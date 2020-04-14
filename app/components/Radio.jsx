@@ -5,6 +5,7 @@ import Slider from '@material-ui/core/Slider';
 import TrackList from './TrackList';
 import {changeFrequency} from '../reducers/actions';
 import RadioImage from './RadioImage.jsx';
+import BackgroundImage from './backgroundImage';
 
 export default class Radio extends React.Component {
 
@@ -12,50 +13,52 @@ export default class Radio extends React.Component {
     super();
     this.state = {
       playing_music:false,
+      global_volume:0.5,
     };
 
     this.set_playing_music = this.set_playing_music.bind(this);
+    this.set_global_volume = this.set_global_volume.bind(this);
 
   }
 
   set_playing_music(){
-    this.setState({playing_music: true});
+    if(this.state.playing_music){
+      this.setState({playing_music:false});
+    }
+    else{
+      this.setState({playing_music:true});
+    }
+  }
+
+  set_global_volume(global_volume){
+    this.setState({"global_volume": global_volume})
   }
 
   render(){
-      console.log("Tracks en Radio.jsx: " + JSON.stringify(this.props.tracks));
     return (
       <>
-        <div style={{width:"100vw", height:"100vh", textAlign:"center", position:"relative"}}>
-
-          {/* <img style={{maxWidth:"100%", maxHeight:"100%"}}src="./assets/images/radio.png"/> */}
-
-          <Slider
-            style={{color:"black",position:"absolute", top:"24%", left:"33vw", width:"30%", zIndex:"1"}}
-
-            defaultValue={this.props.conf.initial_frequency}
-            max={this.props.conf.max_frequency}
-            min={this.props.conf.min_frequency}
-            step={this.props.conf.step_frequency}
-
-            onChange={(ev, freq)=>{this.props.dispatch(changeFrequency(freq));}}
-            // onChangeCommitted={(ev, freq)=>{this.props.dispatch(changeFrequency(freq));}}
-            // marks={marks}
-            valueLabelDisplay="on"
-
+        <div>
+        <BackgroundImage
+                imagePath="../assets/images/background.jpg"
           />
-
-          <RadioImage 
-          playingMusicFunction = {this.set_playing_music}
+          <RadioImage
+            playingMusicFunction = {this.set_playing_music}
+            playingMusicValue = {this.state.playing_music}
+            globalVolumeFunction={this.set_global_volume}
+            dispatch = {this.props.dispatch}
+            conf = {this.props.conf}
+            current_frequency = {this.props.current_frequency}
           />
 
           <TrackList
             trackList={this.props.tracks}
             conf={this.props.conf}
             playingMusic = {this.state.playing_music}
+            dispatch = {this.props.dispatch}
+            globalVolume = {this.state.global_volume}
           />
 
-        
+         
 
         </div>
 

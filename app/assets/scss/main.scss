@@ -11,132 +11,195 @@ html, body, #root, #root > div {
   height: 100%;
   overflow: hidden;
 }
-.icon:hover{
-  transform: scale(1.2);
-}
-.icon{
-  -webkit-transition:all 1s ease; /* Safari y Chrome */
-  -moz-transition:all .9s ease; /* Firefox */
-  -o-transition:all .9s ease; /* IE 9 */
-  -ms-transition:all .9s ease; /* Opera */
-}
 
-.extraPiece:hover{
-  transform: scale(1.2);
-  z-index: 1;
-}
-.extraPiece{
-  -webkit-transition:all 1s ease; /* Safari y Chrome */
-  -moz-transition:all .9s ease; /* Firefox */
-  -o-transition:all .9s ease; /* IE 9 */
-  -ms-transition:all .9s ease; /* Opera */
-}
+//Background image
+#backgroundImg{
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+    
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
 
-.tab{
-  font-family: 'Delius';
+    opacity: 0.5;
 }
-.cont{
-  display:block;
-  text-align: center;
-  margin: 10px;
-}
-.switch {
+//Radio image and elements container
+#radioContainer{
   position: relative;
-  width: 60px;
-  height: 34px;
+  display: flex;
+  justify-content: center;
+  width:100vw;
+  height:100vh;
 }
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
+//Light radio ON OFF
+#lightOnOff{
   position: absolute;
+  top:39vh;
+  left:73.5%;
+  width:3%;
+  height: 5%;
+  background-color: red;
+  z-index:1;
+}
+.buttonOn{
+  background-color: green !important;
+}
+.buttonOff{
+  background-color: red !important;
+}
+
+//Shelving
+#shelving{
+  position: absolute;
+  width:15%;
+  height:62%;
+  top:35vh;
+  left:0%;
+  z-index:4;
+}
+//Cassettes
+#cassettesGroup{
+  position: absolute;
+  flex-direction: column;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index:5;
+  width:12%;
+  height:34%;
+  top:60vh;
+  left:1.3%;
+  background-color: transparent ;
+}
+
+.cassette{
+  z-index:5;
+  width:90%;
+  height: 10%;
+  border: black 2px solid;
+  background-color: #D291BC;
+  margin: 0.5%;
+  transition: transform .2s; /* Animation */
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  border-radius: 5px;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+.cassette:hover{
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  // transform: translate(250px,0px);
 }
-
-input:checked + .slider {
-  background-color: #F2EB8D;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #F2EB8D;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-
-.imgPieza:hover{
-  border-style: groove;
-}
-
-//.imgPiece{
-//  cursor: zoom-in; // http://www.rw-designer.com/cursor-detail/12633
-//}
-
-.title{
-  letter-spacing: 4px;
+.albumTitle{
+  z-index:3;
   text-align: center;
-  color: black;
-  //color: #93A603;
-  font-family: 'Megrim', cursive;
-  padding-bottom: 45px;
-  font-size: 3.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.6vw;
+  margin:0 !important;
+
 }
 
-.titlePrint{
-  display:none;
+.artistName{
+  z-index:3;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.4vw;
 }
-.imagen11{
+//Frequency display
+#frequencyDisplay{
   position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 100%;
-  bottom: 0px;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
-  width: 700px;
-  height: 400px;
+  font-family: monospace;
+  font-size: large;
+  color: white;
+  top: 23vh;
+  left:27%;
+  z-index:3;
 }
-.imagenCompleta{
-  width: 700px;
-  height: 400px;
+//Frequency slider
+#frequencySlider{
+  color: white;
+  position: absolute;
+  top: 30%;
+  left: 28vw;
+  width: 40%;
+  z-index: 3;
 }
+
+.radioOn{
+  opacity:1;
+}
+.radioOff{
+  opacity:0.3;
+}
+
+// svg{
+//   z-index:3;
+//   width:300px;
+//   height:150px;
+// }
+
+svg{
+  position: absolute;
+  // height: 15% !important;
+  top: 16vh;
+  left: 70.5%;
+  z-index:3 !important;
+  width:6vw;
+  // height:150px;
+
+}
+
+#volumeRoundSlider{
+  position: absolute;
+  top:11.5vh !important;
+  left:38.5%;
+  z-index:3;
+}
+
+#volumeRoundSlider svg{
+  width:3.5vw !important;
+}
+//Modification of slider style
+.MuiSlider-thumb{
+  border-radius: 0px !important;
+  height: 100% !important;
+  width: 0.5% !important;
+  margin-top: -25px !important;
+}
+
+.MuiSlider-markLabel{
+  color:white !important;
+  top: 15px !important;
+}
+
+//Radio image
+#radioImg{
+  position: absolute;
+  width:65%;
+  height:100%;
+  align-self: center;
+  z-index: 2;
+}
+//Button ON/OFF Radio
+#btnOnOff {
+  position: absolute;
+  width:3%;
+  height:7%;
+  top:36vh;
+  left:76.3%;
+  background-color: transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  z-index: 3;
+}
+
 
 
 div.header_wrapper img {
@@ -166,77 +229,6 @@ div.header_wrapper img {
   color: gray;
   margin: 8px;
 }
-.contenedorExtra{
-  display:none !important;
-}
-.tablePuzzle{
-  padding: 1px;
-  border-spacing: 0;
-  border-collapse: separate;
-  border:3px black solid;
-  //border:3px #93A603 solid;
-  border-radius: 3px;
-  margin: auto;
-  margin-bottom: 300px;
-  //float: left;
-}
 
-.tablePuzzle td{
-  padding: 0px;
-}
 
-.msgPrint{
-  display: none;
-}
 
-.btnComprobar{
-  text-align: center;
-}
-
-.tablePrint{
-  display: none;
-}
-
-.print{
-  visibility:hidden;
-}
-
-.printInstructions{
-  display:none;
-}
-
-.attemptsContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.attemptsOK{
-  max-width: 10%;
-  max-height: 10%;
-}
-
-.attemptsNOK {
-  filter: grayscale(100%);
-}
-
-.toolkitContainer{
-  text-align: center;
-  background-color: #bdffbd;
-  border-radius: 40px;
-  border: #93A603 4px solid;
-  //border: #93A603 4px solid;
-  width: 40%;
-  margin: 4% auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  //clear: both;
-}
-
-.extra td{
-  padding: 10px;
-
-}
-
-@import "print.scss";

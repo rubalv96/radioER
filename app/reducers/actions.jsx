@@ -100,3 +100,10 @@ export function changeFrequency(freq){
     freq:freq,
   };
 }
+
+export function trackCompleted(id){
+  return {
+    type:'TRACK_COMPLETED',
+    id: id,
+  }
+}

@@ -26,11 +26,38 @@ function tracksReducer(state = [], action){
             "path":GLOBAL_CONFIG["path_track_" + i],
             "frequency":GLOBAL_CONFIG["frequency_track_" + i],
             "volume":0,
+            "completed": false,
           }
         );
       }
     }
-    console.log("Tracks(Starting Radio): " + JSON.stringify(tracks));
+
+    // Load the initial State with the morse sounds defined in the Config file
+    for(i = 1; i < 15; i++){
+      if(typeof (GLOBAL_CONFIG["plain_text_to_morse_" + i]) === "string"){
+        tracks.push(
+          {
+            "id":i+1000,
+            "path":"./assets/sounds/morse/morse_sound_from_plain_text_" + i + ".mp3",
+            "frequency":GLOBAL_CONFIG["frequency_plain_text_" + i],
+            "volume":0,
+            "completed": false,
+          }
+        );
+      }
+      if(typeof (GLOBAL_CONFIG["coded_text_to_morse_" + i]) === "string"){
+        tracks.push(
+          {
+            "id":i+2000,
+            "path":"./assets/sounds/morse/morse_sound_from_coded_text_" + i + ".mp3",
+            "frequency":GLOBAL_CONFIG["frequency_coded_text_" + i],
+            "volume":0,
+            "completed": false,
+          }
+        );
+      }
+    }
+
     return tracks;
 
   case 'CHANGE_FREQUENCY':
@@ -40,10 +67,7 @@ function tracksReducer(state = [], action){
       if(isNoiseSound(track)){
         track.volume = setNoiseVolume(tracks);
       }
-
       else if(isCloseToFrequency(action.freq, track.frequency, GLOBAL_CONFIG.delta)){
-        console.log("Near track: " + JSON.stringify(track));
-
         track.volume = setVolume(distanceToFrequency(action.freq, track.frequency), GLOBAL_CONFIG.delta);
       }
       else{
@@ -51,7 +75,16 @@ function tracksReducer(state = [], action){
       }
       return track;
     });
-    // console.log("Tracks final: "+ JSON.stringify(new_tracks));
+
+    return new_tracks;
+
+  case 'TRACK_COMPLETED':
+    new_tracks = tracks.map((track, index)=>{
+      if(track.id === action.id){
+        track.completed = true;
+      }
+      return track;
+    });
 
     return new_tracks;
 
@@ -80,12 +113,10 @@ function setNoiseVolume(tracks){
 function isCloseToFrequency(current_frequency, track_frequency, delta){
   let isClose = (current_frequency <= (track_frequency + delta) && (current_frequency >= (track_frequency - delta)));
 
-  console.log("isCloseToFrequency: " + isClose);
   return isClose;
 }
 
 function distanceToFrequency(current_frequency, track_frequency){
-  console.log("Distance to Freq: " + Math.abs(current_frequency - track_frequency));
 
   return Math.abs(current_frequency - track_frequency);
 }
@@ -94,7 +125,6 @@ function setVolume(distance, delta){
   let normalized_distance, volume;
   delta === 0 ? normalized_distance = 0 : normalized_distance = distance / delta;
   volume = (1 - normalized_distance);
-  console.log("Volume: " + volume);
   return volume;
 }
 export default tracksReducer;
