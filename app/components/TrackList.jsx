@@ -3,7 +3,6 @@ import '../assets/scss/main.scss';
 import {objectiveAccomplished} from '../reducers/actions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Track from './Track';
-import {changeFrequency} from '../reducers/actions';
 
 export default class TrackList extends React.Component {
 
@@ -17,15 +16,19 @@ export default class TrackList extends React.Component {
     let tracks = this.props.trackList;
     let completed_flag = true;
     tracks.map((track,index)=>{
-      if(track.id===0){
+      if(track.id===0 || (!track.completed && !track.required)){
         return;
       }
       else if(track.completed === false){
         completed_flag = false;
       }
+      if(track.completed === true && track.required===false){
+        completed_flag = false;
+      }
       return;
     });
     if(completed_flag){
+      console.log("All required tracks completed. Fake tracks are not played by the user. Completed challenge.");
       this.props.dispatch(objectiveAccomplished(1, 1));
     }
 
@@ -40,7 +43,8 @@ export default class TrackList extends React.Component {
             id={track.id}
             path={track.path}
             frequency = {track.frequency}
-            volume = {track.volume * this.props.globalVolume}
+            trackVolume = {track.volume }
+            globalVolume={track.volume* this.props.globalVolume}
             isCompleted = {track.completed}
             checkAllTracksCompleted = {this.checkAllTracksCompleted}
             playingMusic = {this.props.playingMusic}

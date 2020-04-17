@@ -16,7 +16,7 @@ export default class RadioImage extends React.Component {
   }
 
   handleFrequencyChange(freq){
-    this.props.dispatch(changeFrequency(freq));
+    this.props.onFrequencyChange(freq);
   }
   createMarks(){
     let fmin = this.props.conf.min_frequency;
@@ -56,8 +56,7 @@ export default class RadioImage extends React.Component {
             min={this.props.conf.min_frequency}
             step={this.props.conf.step_frequency}
 
-            onChange={(ev, freq)=>{this.props.dispatch(changeFrequency(freq));}}
-            // onChangeCommitted={(ev, freq)=>{this.props.dispatch(changeFrequency(freq));}}
+            onChange={(ev, freq)=>{this.props.onFrequencyChange(freq);}}
             valueLabelDisplay="off"
             marks={this.createMarks()}
 
@@ -69,7 +68,6 @@ export default class RadioImage extends React.Component {
             initialValue={this.props.current_frequency}
             step = {this.props.conf.step_frequency}
             conf = {this.props.conf}
-            dispatch = {this.props.dispatch}
             onChange = {this.handleFrequencyChange}
           />
 

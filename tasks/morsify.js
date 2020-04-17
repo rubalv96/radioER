@@ -12,10 +12,20 @@ for(let i=1; i<12; i++){
         morseToMp3.convert(GLOBAL_CONFIG["plain_text_to_morse_" +i], morsePath);
     }
     if(typeof GLOBAL_CONFIG["coded_text_to_morse_" + i] === "string"){
-        const decoded = morsify.decode(GLOBAL_CONFIG["coded_text_to_morse_" + i]); 
+        const decoded = morsify.decode(GLOBAL_CONFIG["coded_text_to_morse_" + i]);
         const morsePath = resolve(__dirname, '../app/assets/sounds/morse/morse_sound_from_coded_text_' + i + '.mp3');
         morseToMp3.convert(decoded, morsePath);
     }
+
+    if(typeof GLOBAL_CONFIG["plain_text_to_morse_fake_" + i] === "string"){
+        const morsePath = resolve(__dirname, '../app/assets/sounds/morse/morse_sound_from_plain_text_fake_' + i + '.mp3');
+        morseToMp3.convert(GLOBAL_CONFIG["plain_text_to_morse_fake_" +i], morsePath);
+    }
+     if(typeof GLOBAL_CONFIG["coded_text_to_morse_fake_" + i] === "string"){
+            const decoded = morsify.decode(GLOBAL_CONFIG["coded_text_to_morse_fake_" + i]);
+            const morsePath = resolve(__dirname, '../app/assets/sounds/morse/morse_sound_from_coded_text_fake_' + i + '.mp3');
+            morseToMp3.convert(decoded, morsePath);
+        }
 
 }
 

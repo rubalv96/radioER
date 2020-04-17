@@ -9,16 +9,16 @@ export default class WheelSlider extends React.Component {
   constructor(){
     super();
       }
-  
-  
-  render(){
-    
 
-   
+
+  render(){
+
+
+
     return (
       <>
 
-            <CircleSlider 
+            <CircleSlider
                 className={this.props.type}
                 min={this.props.minValue}
                 max ={this.props.maxValue}

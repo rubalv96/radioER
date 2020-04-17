@@ -3,7 +3,6 @@ import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Slider from '@material-ui/core/Slider';
 import TrackList from './TrackList';
-import {changeFrequency} from '../reducers/actions';
 import RadioImage from './RadioImage.jsx';
 import BackgroundImage from './backgroundImage';
 
@@ -45,7 +44,7 @@ export default class Radio extends React.Component {
             playingMusicFunction = {this.set_playing_music}
             playingMusicValue = {this.state.playing_music}
             globalVolumeFunction={this.set_global_volume}
-            dispatch = {this.props.dispatch}
+            onFrequencyChange = {this.props.onFrequencyChange}
             conf = {this.props.conf}
             current_frequency = {this.props.current_frequency}
           />
@@ -58,7 +57,7 @@ export default class Radio extends React.Component {
             globalVolume = {this.state.global_volume}
           />
 
-         
+
 
         </div>
 
