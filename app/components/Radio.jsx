@@ -47,10 +47,12 @@ export default class Radio extends React.Component {
             onFrequencyChange = {this.props.onFrequencyChange}
             conf = {this.props.conf}
             current_frequency = {this.props.current_frequency}
+            cassetteTracks = {this.props.cassetteTracks}
+            onSelectCassette={this.props.onSelectCassette}
           />
 
           <TrackList
-            trackList={this.props.tracks}
+            trackList={this.props.radioTracks}
             conf={this.props.conf}
             playingMusic = {this.state.playing_music}
             dispatch = {this.props.dispatch}

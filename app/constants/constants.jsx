@@ -13,6 +13,7 @@ export const INITIAL_STATE = {
     learner_preference:{},
   },
   wait_for_user_profile:false,
-  tracks:[],
+  radioTracks:[],
+  cassetteTracks:[],
   current_frequency:0,
 };

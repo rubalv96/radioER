@@ -4,8 +4,9 @@ import trackingReducer from './trackingReducer';
 import scormReducer from './scormReducer';
 import userProfileReducer from './userProfileReducer';
 import waitForUserProfileReducer from './waitForUserProfileReducer';
-import tracksReducer from "./tracksReducer";
+import radioTracksReducer from "./radioTracksReducer";
 import currentFrequencyReducer from "./currentFrequencyReducer";
+import cassetteTracksReducer from "./cassetteTracksReducer";
 
 const GlobalState = combineReducers({
   loading:loadingReducer,
@@ -13,7 +14,8 @@ const GlobalState = combineReducers({
   scorm:scormReducer,
   user_profile:userProfileReducer,
   wait_for_user_profile:waitForUserProfileReducer,
-  tracks:tracksReducer,
+  radioTracks:radioTracksReducer,
+  cassetteTracks: cassetteTracksReducer,
   current_frequency:currentFrequencyReducer,
 });
 

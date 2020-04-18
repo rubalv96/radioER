@@ -44,6 +44,13 @@ export function updateTracks(tracks){
   };
 }
 
+export function updateCassetteTracks(tracks){
+  return {
+    type:'UPDATE_CASSETTE_TRACKS',
+    tracks: tracks,
+  };
+}
+
 export function changeFrequency(freq){
   return {
     type:'CHANGE_FREQUENCY',

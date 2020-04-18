@@ -1,10 +1,9 @@
 import React from 'react';
 import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactPlayer from "react-player";
 
-import {DropdownButton, Dropdown} from 'react-bootstrap';
-
-export default class AudioCassettes extends React.Component {
+export default class Cassette extends React.Component {
 
   constructor(){
     super();
@@ -12,10 +11,25 @@ export default class AudioCassettes extends React.Component {
 
   render(){
 
-    return (
+    let player="";
+    if (this.props.cassetteTracks[0] !== undefined){
+      console.log(this.props.cassetteTracks[0].id);
+      console.log(this.props.cassetteTracks[0].tracks[0].path);
+      player=(
+        <ReactPlayer
+            style={{display: "none"}}
+            url={this.props.cassetteTracks[0].tracks[this.props.trackNumber].path}
+            playing={this.props.playingCassette}
+            volume={1}
+        />
+      )
+    }
 
-   
-        <div className="cassette">
+
+
+    return (
+      <>
+        <div className="cassette" onClick={()=>{this.props.onSelectCassette(this.props.albumTitle)}}>
             <p className="albumTitle">
                 {this.props.albumTitle}
             </p>
@@ -23,7 +37,11 @@ export default class AudioCassettes extends React.Component {
                 {this.props.artistName}
             </p>
         </div>
-        
+        {player}
+
+
+
+        </>
     );
   }
 

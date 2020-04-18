@@ -1,6 +1,6 @@
 let GLOBAL_CONFIG = require('../config/config.js');
 
-function tracksReducer(state = [], action){
+function radioTracksReducer(state = [], action){
   let tracks = Object.assign([], state);
   let i, new_tracks;
 
@@ -27,4 +27,4 @@ function tracksReducer(state = [], action){
 
 }
 
-export default tracksReducer;
+export default radioTracksReducer;

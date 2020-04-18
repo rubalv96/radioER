@@ -6,12 +6,18 @@ import WheelSlider from './WheelSlider';
 import FrequencyDisplay from './FrequencyDisplay';
 import {changeFrequency} from '../reducers/actions';
 import AudioCassettes from './AudioCassettes';
+import ButtonsController from "./ButtonsController";
 
 export default class RadioImage extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+    this.state={
+      playing_cassette:false,
+    };
     this.handleFrequencyChange = this.handleFrequencyChange.bind(this);
+    this.onPlay = this.onPlay.bind(this);
+    this.onPause = this.onPause.bind(this);
 
   }
 
@@ -92,11 +98,29 @@ export default class RadioImage extends React.Component {
             current_frequency = {this.props.current_frequency}
           />
 
-          <AudioCassettes/>
+          <AudioCassettes
+            onSelectCassette={this.props.onSelectCassette}
+            cassetteTracks = {this.props.cassetteTracks}
+            playingCassette = {this.state.playing_cassette}
+          />
+
+          <ButtonsController
+            onPlay={this.onPlay}
+            onPause={this.onPause}
+          />
         </div>
 
       </>
     );
+
+    }
+
+  onPlay(){
+    this.setState({playing_cassette: true});
+  }
+
+  onPause(){
+    this.setState({playing_cassette: false});
   }
 
 }

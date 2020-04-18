@@ -40,6 +40,16 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
   coded_text_to_morse_fake_1: "--- ... ---",
   frequency_coded_text_fake_1:96,
 
+  cassette_1:{
+    title: "Album 1",
+    artist: "Artist 1",
+    tracks:[
+      {
+        title: "Track 1",
+        path: "./assets/sounds/prueba2.mp3",
+      }
+    ],
+  },
 
 
 

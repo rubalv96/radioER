@@ -9,7 +9,7 @@ import * as Utils from '../vendors/Utils';
 
 import SCORM from './SCORM.jsx';
 import Radio from './Radio';
-import {updateTracks, addObjectives, changeFrequency} from '../reducers/actions';
+import {updateTracks, addObjectives, changeFrequency, updateCassetteTracks} from '../reducers/actions';
 
 
 export class App extends React.Component {
@@ -20,6 +20,7 @@ export class App extends React.Component {
     };
     this.changeFrequency = this.changeFrequency.bind(this);
     this.getInitialTracks = this.getInitialTracks.bind(this);
+    this.onSelectCassette = this.onSelectCassette.bind(this);
   }
 
 
@@ -40,8 +41,10 @@ export class App extends React.Component {
       appContent = (
         <Radio
           conf= {GLOBAL_CONFIG}
-          tracks={this.props.tracks}
+          radioTracks={this.props.radioTracks}
+          cassetteTracks = {this.props.cassetteTracks}
           current_frequency = {this.props.current_frequency}
+          onSelectCassette = {this.onSelectCassette}
           onFrequencyChange={this.changeFrequency}
           dispatch={this.props.dispatch}
         />
@@ -67,10 +70,10 @@ export class App extends React.Component {
   }
 
   getInitialTracks(){
-    let tracks = Object.assign([], this.props.tracks);
+    let radioTracks = Object.assign([], this.props.radioTracks);
 
     // Load the noise sound
-    tracks.push(
+    radioTracks.push(
       {
         "id":0,
         "path":"./assets/sounds/whiteNoise.mp3",
@@ -82,7 +85,7 @@ export class App extends React.Component {
     for(let i = 1; i < 50; i++){
       // Load the initial State with the tracks defined in the Config file
       if(typeof (GLOBAL_CONFIG["path_track_" + i]) === "string"){
-        tracks.push(
+        radioTracks.push(
           {
             "id":i,
             "path":GLOBAL_CONFIG["path_track_" + i],
@@ -95,7 +98,7 @@ export class App extends React.Component {
       }
       // Load the initial State with the morse sounds defined in the Config file
       if(typeof (GLOBAL_CONFIG["plain_text_to_morse_" + i]) === "string"){
-        tracks.push(
+        radioTracks.push(
           {
             "id":i+1000,
             "path":"./assets/sounds/morse/morse_sound_from_plain_text_" + i + ".mp3",
@@ -108,7 +111,7 @@ export class App extends React.Component {
         );
       }
       if(typeof (GLOBAL_CONFIG["coded_text_to_morse_" + i]) === "string"){
-        tracks.push(
+        radioTracks.push(
           {
             "id":i+2000,
             "path":"./assets/sounds/morse/morse_sound_from_coded_text_" + i + ".mp3",
@@ -122,7 +125,7 @@ export class App extends React.Component {
       }
 
       if(typeof (GLOBAL_CONFIG["path_fake_track_" + i]) === "string"){
-        tracks.push(
+        radioTracks.push(
           {
             "id":i+3000,
             "path":GLOBAL_CONFIG["path_fake_track_" + i],
@@ -136,7 +139,7 @@ export class App extends React.Component {
       }
 
       if(typeof (GLOBAL_CONFIG["plain_text_to_morse_fake_" + i]) === "string"){
-        tracks.push(
+        radioTracks.push(
           {
             "id":i+4000,
             "path":"./assets/sounds/morse/morse_sound_from_plain_text_fake_" + i + ".mp3",
@@ -149,7 +152,7 @@ export class App extends React.Component {
         );
       }
       if(typeof (GLOBAL_CONFIG["coded_text_to_morse_fake_" + i]) === "string"){
-        tracks.push(
+        radioTracks.push(
           {
             "id":i+5000,
             "path":"./assets/sounds/morse/morse_sound_from_coded_text_fake_" + i + ".mp3",
@@ -162,13 +165,13 @@ export class App extends React.Component {
         );
       }
 
-    console.log("TRACKS: "+ JSON.stringify(tracks));
+    console.log("TRACKS: "+ JSON.stringify(radioTracks));
 
     }
-    return tracks;
+    return radioTracks;
   }
   changeFrequency(freq){
-    let tracks = Object.assign([], this.props.tracks);
+    let tracks = Object.assign([], this.props.radioTracks);
     let new_tracks = tracks.map((track, index)=>{
 
       if(this.isNoiseSound(track)){
@@ -219,6 +222,28 @@ export class App extends React.Component {
     delta === 0 ? normalized_distance = 0 : normalized_distance = distance / delta;
     volume = (1 - normalized_distance);
     return volume;
+  }
+
+  onSelectCassette(albumTitle){
+    let cassetteTracks = Object.assign([], this.props.cassetteTracks);
+    for(let i=1; i<20; i++){
+      if(typeof (GLOBAL_CONFIG["cassette_"+i])==="object" && GLOBAL_CONFIG["cassette_"+i]["title"]===albumTitle){
+        let cassette = Object.assign({}, GLOBAL_CONFIG["cassette_"+i]);
+
+        cassetteTracks.push(
+          {
+            "id":i,
+            "title": cassette.title,
+            "artist": cassette.artist,
+            "tracks": cassette.tracks,
+            "completed": false,
+            "required": false,
+          }
+        );
+
+        this.props.dispatch(updateCassetteTracks(cassetteTracks));
+      }
+    }
   }
 }
 

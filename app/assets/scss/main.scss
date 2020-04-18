@@ -186,6 +186,7 @@ svg{
   align-self: center;
   z-index: 2;
 }
+
 //Button ON/OFF Radio
 #btnOnOff {
   position: absolute;
@@ -202,6 +203,28 @@ svg{
   z-index: 3;
 }
 
+//Play button
+#playButton{
+  position: absolute;
+  width: 2.5%;
+  height: 6.8%;
+  cursor: pointer;
+  background-color: transparent;
+  z-index:5;
+  top: 87vh;
+  left: 50.3%;
+}
+
+#pauseButton{
+  position: absolute;
+  width: 2.5%;
+  height: 6.8%;
+  cursor: pointer;
+  background-color: transparent;
+  z-index:5;
+  top: 87vh;
+  left: 56%;
+}
 
 
 div.header_wrapper img {
