@@ -14,10 +14,18 @@ export default class RadioImage extends React.Component {
     super(props);
     this.state={
       playing_cassette:false,
+      track_number:0,
+      stop_playing: false,
+      muted: false,
     };
     this.handleFrequencyChange = this.handleFrequencyChange.bind(this);
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
+    this.onNext = this.onNext.bind(this);
+    this.onPrev = this.onPrev.bind(this);
+    this.onMute = this.onMute.bind(this);
+    this.onStop = this.onStop.bind(this);
+    this.onEnded = this.onEnded.bind(this);
 
   }
 
@@ -102,11 +110,19 @@ export default class RadioImage extends React.Component {
             onSelectCassette={this.props.onSelectCassette}
             cassetteTracks = {this.props.cassetteTracks}
             playingCassette = {this.state.playing_cassette}
+            trackNumber = {this.state.track_number}
+            stopPlaying = {this.state.stop_playing}
+            muted = {this.state.muted}
+            onEnded = {this.onEnded}
           />
 
           <ButtonsController
             onPlay={this.onPlay}
             onPause={this.onPause}
+            onNext={this.onNext}
+            onPrev={this.onPrev}
+            onStop={this.onStop}
+            onMute={this.onMute}
           />
         </div>
 
@@ -117,10 +133,58 @@ export default class RadioImage extends React.Component {
 
   onPlay(){
     this.setState({playing_cassette: true});
+    this.setState({stop_playing: false});
   }
 
   onPause(){
     this.setState({playing_cassette: false});
+  }
+
+  onNext(){
+    let trackNumber = this.state.track_number;
+    console.log("Longitud de tracks (debe ser 2): ");
+    console.log( this.props.cassetteTracks[0].tracks.length);
+
+    if(trackNumber === this.props.cassetteTracks[0].tracks.length -1){
+      this.setState({track_number: 0});
+    }
+    else{
+      this.setState({track_number: trackNumber+1});
+    }
+    console.log("Next. Track " + this.state.track_number);
+  }
+  onPrev(){
+    let trackNumber = this.state.track_number;
+    let lastTrack = this.props.cassetteTracks[0].tracks.length - 1;
+    console.log("Last track: " + lastTrack);
+    if(trackNumber === 0){
+      trackNumber = lastTrack;
+    }
+    else{
+      trackNumber = trackNumber -1;
+    }
+    this.setState({track_number: trackNumber});
+    console.log("PREV. Track" + this.state.track_number);
+  }
+
+  onMute(){
+    let isMuted = this.state.muted;
+    this.setState({muted: !isMuted});
+
+  }
+
+  onStop(){
+    let trackNumber = 0;
+    this.setState({track_number: trackNumber});
+    this.setState({playing_cassette: false});
+    this.setState({stop_playing: true});
+    console.log("STOP. Track " + this.state.track_number);
+  }
+
+  onEnded(){
+
+    this.setState({playing_cassette: false});
+    this.setState({stop_playing: true});
   }
 
 }

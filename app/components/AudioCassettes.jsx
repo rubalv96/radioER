@@ -6,9 +6,7 @@ export default class AudioCassettes extends React.Component {
 
   constructor(){
     super();
-    this.state={
-      trackNumber: 0,
-    }
+
   }
 
   render(){
@@ -25,9 +23,12 @@ export default class AudioCassettes extends React.Component {
                 albumTitle="Album 1"
                 artistName="Artist 1"
                 onSelectCassette = {this.props.onSelectCassette}
-                trackNumber={this.state.trackNumber}
+                trackNumber={this.props.trackNumber}
                 cassetteTracks = {this.props.cassetteTracks}
                 playingCassette = {this.props.playingCassette}
+                stopPlaying={this.props.stopPlaying}
+                muted = {this.props.muted}
+                onEnded = {this.props.onEnded}
             />
         </div>
     </div>

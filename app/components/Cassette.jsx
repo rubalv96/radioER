@@ -12,15 +12,17 @@ export default class Cassette extends React.Component {
   render(){
 
     let player="";
-    if (this.props.cassetteTracks[0] !== undefined){
-      console.log(this.props.cassetteTracks[0].id);
-      console.log(this.props.cassetteTracks[0].tracks[0].path);
+    if (this.props.cassetteTracks[0] !== undefined && !this.props.stopPlaying){
+      console.log("Tracks " + this.props.cassetteTracks[0].tracks);
+      console.log("Reproduciendo track " + this.props.trackNumber);
       player=(
         <ReactPlayer
             style={{display: "none"}}
             url={this.props.cassetteTracks[0].tracks[this.props.trackNumber].path}
             playing={this.props.playingCassette}
             volume={1}
+            muted = {this.props.muted}
+            onEnded = {()=>{this.props.onEnded()}}
         />
       )
     }

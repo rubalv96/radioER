@@ -21,6 +21,14 @@ export default class ButtonsController extends React.Component {
         </div>
         <div id="pauseButton" onClick={()=>{this.props.onPause()}}>
         </div>
+        <div id="nextButton" onClick={()=>{this.props.onNext()}}>
+        </div>
+        <div id="prevButton" onClick={()=>{this.props.onPrev()}}>
+        </div>
+        <div id="muteButton" onClick={()=>{this.props.onMute()}}>
+        </div>
+        <div id="stopButton" onClick={()=>{this.props.onStop()}}>
+        </div>
 
 
       </>

@@ -226,6 +226,50 @@ svg{
   left: 56%;
 }
 
+#nextButton{
+  position: absolute;
+  width: 2.5%;
+  height: 6.8%;
+  cursor: pointer;
+  background-color: transparent;
+  z-index:5;
+  top: 87vh;
+  left: 53.2%;
+}
+
+
+#prevButton{
+  position: absolute;
+  width: 2.5%;
+  height: 6.8%;
+  cursor: pointer;
+  background-color: transparent;
+  z-index:5;
+  top: 87vh;
+  left: 47.5%;
+}
+#muteButton{
+   position: absolute;
+   width: 2.5%;
+   height: 6.8%;
+   cursor: pointer;
+   background-color: transparent;
+   z-index:5;
+   top: 87vh;
+   left: 44.8%;
+ }
+
+#stopButton{
+  position: absolute;
+  width: 2.5%;
+  height: 6.8%;
+  cursor: pointer;
+  background-color: transparent;
+  z-index:5;
+  top: 87vh;
+  left: 41.8%;
+}
+
 
 div.header_wrapper img {
   width: 71px;

@@ -46,8 +46,13 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
     tracks:[
       {
         title: "Track 1",
+        path: "./assets/sounds/prueba1.mp3",
+      },
+      {
+        title: "Track 2",
         path: "./assets/sounds/prueba2.mp3",
-      }
+      },
+
     ],
   },
 
