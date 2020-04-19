@@ -41,21 +41,75 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
   frequency_coded_text_fake_1:96,
 
   cassette_1:{
-    title: "Album 1",
-    artist: "Artist 1",
+    title: "Abbey Road",
+    artist: "The Beatles",
     tracks:[
       {
-        title: "Track 1",
+        title: "Come together",
         path: "./assets/sounds/prueba1.mp3",
+        required: true,
       },
       {
-        title: "Track 2",
+        title: "Something",
         path: "./assets/sounds/prueba2.mp3",
+        required: false,
+
       },
 
     ],
   },
 
+cassette_2:{
+    title: "The Rolling Stones",
+    artist: "The Rolling Stones",
+    tracks:[
+      {
+        title: "Route 66",
+        path: "./assets/sounds/prueba2.mp3",
+        required: true,
+
+      },
+      {
+        title: "I Just Want to Make Love to You",
+        path: "./assets/sounds/prueba1.mp3",
+        required: false,
+      },
+      {
+        title: "Honest I do",
+        path: "./assets/sounds/prueba1.mp3",
+        required: false,
+      },
+
+    ],
+  },
+
+cassette_3:{
+    title: "A night at the Opera",
+    artist: "Queen",
+    tracks:[
+      {
+        title: "Death on Two Legs",
+        path: "./assets/sounds/prueba1.mp3",
+        required: false,
+
+      },
+      {
+        title: "Lazing on a Sunday Afternoon",
+        path: "./assets/sounds/prueba2.mp3",
+        required: true,
+
+      },
+      {
+        title: "I'm in Love with My Car",
+        path: "./assets/sounds/prueba2.mp3",
+        required: true,
+
+      },
+
+    ],
+  },
+
+  strict_mode: true,
 
 
   // No tocar

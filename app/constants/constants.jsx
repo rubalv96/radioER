@@ -14,6 +14,8 @@ export const INITIAL_STATE = {
   },
   wait_for_user_profile:false,
   radioTracks:[],
+  radioTracksCompleted: false,
   cassetteTracks:[],
+  cassetteTracksCompleted: false,
   current_frequency:0,
 };

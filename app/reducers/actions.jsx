@@ -64,3 +64,24 @@ export function trackCompleted(id){
     id: id,
   }
 }
+export function cassetteTrackCompleted(id, trackNumber){
+  return {
+    type:'CASSETTE_TRACK_COMPLETED',
+    payload:{
+      id: id,
+      trackNumber: trackNumber,
+    },
+  }
+}
+
+export function radioTracksCompleted(){
+  return {
+    type:'RADIO_TRACKS_COMPLETED',
+  }
+}
+
+export function cassetteTracksCompleted(){
+  return {
+    type:'CASSETTE_TRACKS_COMPLETED',
+  }
+}

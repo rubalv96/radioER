@@ -270,6 +270,106 @@ svg{
   left: 41.8%;
 }
 
+//LEDs of buttons
+#playLED{
+  position: absolute;
+  top:82vh;
+  left:50.5%;
+  width:3%;
+  height: 5%;
+  background-color: green;
+  z-index:1;
+}
+
+#stopLED{
+  position: absolute;
+  top:82vh;
+  left:42%;
+  width:3%;
+  height: 5%;
+  background-color: red;
+  z-index:1;
+}
+#muteLED{
+  position: absolute;
+  top:82vh;
+  left:44.5%;
+  width:3%;
+  height: 5%;
+  background-color: yellow;
+  z-index:1;
+}
+
+#pauseLED{
+  position: absolute;
+  top:82vh;
+  left:55.5%;
+  width:3%;
+  height: 5%;
+  background-color: blue;
+  z-index:1;
+}
+
+#nextLED{
+  position: absolute;
+  top:82vh;
+  left:53.3%;
+  width:3%;
+  height: 5%;
+  background-color: white;
+  z-index:1;
+}
+#prevLED{
+  position: absolute;
+  top:82vh;
+  left:47.5%;
+  width:3%;
+  height: 5%;
+  background-color: white;
+  z-index:1;
+}
+.ledON{
+  opacity: 1;
+}
+.ledOFF{
+  opacity: 0.5;
+}
+
+#titleCassetteScreen{
+  position: absolute;
+  font-family: monospace;
+  font-size: 1vw;
+  width: 17%;
+  height: 6.5%;
+  text-align: center;
+  color: white;
+  top: 66vh;
+  left:41.8%;
+  text-transform: uppercase;
+  z-index:3;
+  background: transparent;
+  opacity: 0.8;
+
+}
+
+#titleCassette{
+  position: absolute;
+  font-family: monospace;
+  font-size: 1vw;
+  width: 13%;
+  height: 3.5%;
+  text-align: center;
+  color: white;
+  opacity: 0.5;
+  font-style: italic;
+  top: 57vh;
+  left:43.8%;
+  text-transform: uppercase;
+  z-index:3;
+  background: transparent;
+
+}
+
 
 div.header_wrapper img {
   width: 71px;

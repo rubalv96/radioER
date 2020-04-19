@@ -3,6 +3,7 @@ import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {trackCompleted} from '../reducers/actions';
 import ReactPlayer from "react-player";
+let GLOBAL_CONFIG = require('../config/config.js');
 
 export default class Track extends React.Component {
 
@@ -35,11 +36,10 @@ export default class Track extends React.Component {
   }
 
   checkTrackCompleted(){
-    if(this.state.listening_music_time > this.state.duration_music_time){
-      console.log("Track " + this.props.id + " completed.");
-      this.props.dispatch(trackCompleted(this.props.id));
-      this.props.checkAllTracksCompleted();
-    }
+
+    this.props.checkRadioTrackCompleted(this.state.listening_music_time, this.state.duration_music_time, this.props.id, this.props.isRequired);
+
+
 
   }
 
