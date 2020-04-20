@@ -123,6 +123,8 @@ export default class RadioImage extends React.Component {
             muted = {this.state.muted}
             onEnded = {this.onEnded}
             idCassetteSelected = {this.props.idCassetteSelected}
+            globalVolume = {this.props.globalVolume}
+
 
           />
 
@@ -136,6 +138,7 @@ export default class RadioImage extends React.Component {
             playingCassette={this.state.playing_cassette}
             stopPlaying = {this.state.stop_playing}
             muted = {this.state.muted}
+            isSomeCassetteSelected = {this.props.idCassetteSelected !== -1}
           />
 
           <div id={"titleCassetteScreen"}>

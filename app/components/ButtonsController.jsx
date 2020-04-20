@@ -30,7 +30,7 @@ export default class ButtonsController extends React.Component {
     let playLed = this.props.playingCassette ? "ledON" : "ledOFF";
     let stopLed = this.props.stopPlaying ? "ledON" : "ledOFF";
     let muteLed = this.props.muted ? "ledON" : "ledOFF";
-    let pauseLed = (!this.props.playingCassette && !this.props.stopPlaying)  ? "ledON" : "ledOFF";
+    let pauseLed = (!this.props.playingCassette && this.props.isSomeCassetteSelected)  ? "ledON" : "ledOFF";
 
 
     let leds=(

@@ -19,7 +19,7 @@ import {
   cassetteTracksCompleted,
   radioTracksCompleted, objectiveAccomplished,
 } from '../reducers/actions';
-
+import AlertMessages from "./AlertMessages";
 
 export class App extends React.Component {
   constructor(props){
@@ -27,6 +27,9 @@ export class App extends React.Component {
     I18n.init();
     this.state = {
       id_cassette_selected:-1,
+      show_success_message: false,
+      show_error_message:false,
+      show_info_message:false,
     };
     this.changeFrequency = this.changeFrequency.bind(this);
     this.getInitialTracks = this.getInitialTracks.bind(this);
@@ -53,6 +56,7 @@ export class App extends React.Component {
 
     if((this.props.tracking.finished !== true) || (this.props.wait_for_user_profile !== true)){
       appContent = (
+        <>
         <Radio
           conf={GLOBAL_CONFIG}
           radioTracks={this.props.radioTracks}
@@ -66,10 +70,23 @@ export class App extends React.Component {
           checkAllRadioTracksCompleted={this.checkAllRadioTracksCompleted}
           checkCassetteTrackCompleted = {this.checkCassetteTrackCompleted}
           checkAllCassetteTracksCompleted = {this.checkAllCassetteTracksCompleted}
-
         />
+
+        <AlertMessages
+            openError = {this.state.show_error_message}
+            openSuccess = {this.state.show_success_message}
+            openInfo = {this.state.show_info_message}
+        />
+
+
+
+
+
+        </>
       );
     }
+
+
 
     return (
       <React.Fragment>
@@ -250,7 +267,9 @@ export class App extends React.Component {
           {
             "id":i,
             "title":cassette.title,
+            "titleFont": this.getRandomFont(),
             "artist":cassette.artist,
+            "color": this.getRandomColor(),
             "tracks":cassette.tracks,
           }
         );
@@ -281,9 +300,11 @@ checkRadioTrackCompleted(listening_music_time, duration_music_time, trackId, isR
     }
     else if(GLOBAL_CONFIG.strict_mode){
       console.log("Has escuchado un audio que no deberías. No puedes seguir jugando");
+      this.setState({show_error_message: true});
     }
     else{
       console.log("Has escuchado un audio que no deberías. Pero PUEDES seguir jugando");
+      this.setState({show_info_message: true});
     }
   }
 }
@@ -340,9 +361,33 @@ checkAllRadioTracksCompleted(){
     if(this.props.cassetteTracksCompleted && this.props.radioTracksCompleted){
       this.props.dispatch(objectiveAccomplished(1,1));
       console.log("SCORM: Objective Accomplished");
+      this.setState({show_success_message: true});
 
     }
 }
+  getRandomColor() {
+    return "hsl(" + 360 * Math.random() + ',' +
+      (25 + 70 * Math.random()) + '%,' +
+      (85 + 10 * Math.random()) + '%)'
+  }
+  getRandomFont(){
+    let fonts = [
+      "baloo-bhaina",
+      "josefin-slab",
+      "arvo",
+      "lato",
+      "volkhov",
+      "abril-fatface",
+      "ubuntu",
+      "roboto",
+      "droid-sans-mono",
+      "anton",
+    ];
+    return fonts[Math.floor(Math.random()*(fonts.length-1))];
+  }
+
+
+
 
 
 }

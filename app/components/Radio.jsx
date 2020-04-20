@@ -5,6 +5,7 @@ import Slider from '@material-ui/core/Slider';
 import TrackList from './TrackList';
 import RadioImage from './RadioImage.jsx';
 import BackgroundImage from './backgroundImage';
+import Instructions from "./Instructions";
 
 export default class Radio extends React.Component {
 
@@ -44,6 +45,7 @@ export default class Radio extends React.Component {
             playingMusicFunction = {this.set_playing_music}
             playingMusicValue = {this.state.playing_music}
             globalVolumeFunction={this.set_global_volume}
+            globalVolume = {this.state.global_volume}
             onFrequencyChange = {this.props.onFrequencyChange}
             conf = {this.props.conf}
             current_frequency = {this.props.current_frequency}
@@ -63,6 +65,8 @@ export default class Radio extends React.Component {
             checkRadioTrackCompleted = {this.props.checkRadioTrackCompleted}
             checkAllRadioTracksCompleted={this.props.checkAllRadioTracksCompleted}
           />
+
+          <Instructions/>
 
 
 

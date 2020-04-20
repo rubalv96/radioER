@@ -19,26 +19,26 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
   // path_track_3: "./assets/sounds/backgroundMusic.mp3",
   // frequency_track_3: 98.3,
 
-  plain_text_to_morse_1:"The code is 14",
-  frequency_plain_text_1:92,
+  // plain_text_to_morse_1:"The code is 14",
+  // frequency_plain_text_1:92,
 
   // plain_text_to_morse_2:"SOS",
   // frequency_plain_text_2:102.5,
   //
-  plain_text_to_morse_fake_1:"SOS",
-  frequency_plain_text_fake_1:95,
+  // plain_text_to_morse_fake_1:"SOS",
+  // frequency_plain_text_fake_1:95,
   //
   // plain_text_to_morse_3:"OSO",
   // frequency_plain_text_3:105.3,
 
-  coded_text_to_morse_1: "... --- ...",
-  frequency_coded_text_1:93,
+  // coded_text_to_morse_1: "... --- ...",
+  // frequency_coded_text_1:93,
 
   // coded_text_to_morse_2: "--- ... ---",
   // frequency_coded_text_2:96.9,
   //
-  coded_text_to_morse_fake_1: "--- ... ---",
-  frequency_coded_text_fake_1:96,
+  // coded_text_to_morse_fake_1: "--- ... ---",
+  // frequency_coded_text_fake_1:96,
 
   cassette_1:{
     title: "Abbey Road",

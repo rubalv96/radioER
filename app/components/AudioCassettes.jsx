@@ -2,6 +2,7 @@ import React from 'react';
 import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cassette from './Cassette';
+import RadioImage from "./RadioImage";
 export default class AudioCassettes extends React.Component {
 
   constructor(){
@@ -37,6 +38,8 @@ export default class AudioCassettes extends React.Component {
                 muted = {this.props.muted}
                 onEnded = {this.props.onEnded}
                 isSelected = {this.props.idCassetteSelected === cassette.id}
+                globalVolume = {this.props.globalVolume}
+
               />
             );
           })}
