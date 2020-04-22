@@ -39,6 +39,7 @@ export default class AudioCassettes extends React.Component {
                 onEnded = {this.props.onEnded}
                 isSelected = {this.props.idCassetteSelected === cassette.id}
                 globalVolume = {this.props.globalVolume}
+                resetTrackNumber={this.props.resetTrackNumber}
 
               />
             );

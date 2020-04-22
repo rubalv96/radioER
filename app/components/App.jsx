@@ -27,7 +27,7 @@ export class App extends React.Component {
     I18n.init();
     this.state = {
       id_cassette_selected:-1,
-      show_success_message: false,
+      show_success_message:false,
       show_error_message:false,
       show_info_message:false,
     };
@@ -57,36 +57,30 @@ export class App extends React.Component {
     if((this.props.tracking.finished !== true) || (this.props.wait_for_user_profile !== true)){
       appContent = (
         <>
-        <Radio
-          conf={GLOBAL_CONFIG}
-          radioTracks={this.props.radioTracks}
-          cassetteTracks={this.props.cassetteTracks}
-          current_frequency={this.props.current_frequency}
-          onSelectCassette={this.onSelectCassette}
-          idCassetteSelected={this.state.id_cassette_selected}
-          onFrequencyChange={this.changeFrequency}
-          dispatch={this.props.dispatch}
-          checkRadioTrackCompleted = {this.checkRadioTrackCompleted}
-          checkAllRadioTracksCompleted={this.checkAllRadioTracksCompleted}
-          checkCassetteTrackCompleted = {this.checkCassetteTrackCompleted}
-          checkAllCassetteTracksCompleted = {this.checkAllCassetteTracksCompleted}
-        />
+          <Radio
+            conf={GLOBAL_CONFIG}
+            radioTracks={this.props.radioTracks}
+            cassetteTracks={this.props.cassetteTracks}
+            current_frequency={this.props.current_frequency}
+            onSelectCassette={this.onSelectCassette}
+            idCassetteSelected={this.state.id_cassette_selected}
+            onFrequencyChange={this.changeFrequency}
+            dispatch={this.props.dispatch}
+            checkRadioTrackCompleted = {this.checkRadioTrackCompleted}
+            checkAllRadioTracksCompleted={this.checkAllRadioTracksCompleted}
+            checkCassetteTrackCompleted = {this.checkCassetteTrackCompleted}
+            checkAllCassetteTracksCompleted = {this.checkAllCassetteTracksCompleted}
+          />
 
-        <AlertMessages
+          <AlertMessages
             openError = {this.state.show_error_message}
             openSuccess = {this.state.show_success_message}
             openInfo = {this.state.show_info_message}
-        />
-
-
-
-
+          />
 
         </>
       );
     }
-
-
 
     return (
       <React.Fragment>
@@ -117,91 +111,124 @@ export class App extends React.Component {
       }
     );
 
-    for(let i = 1; i < 50; i++){
+    let j = 1, k = 1;
+
+    for(let i = 0; i < GLOBAL_CONFIG.radio_tracks.length; i++){
       // Load the initial State with the tracks defined in the Config file
-      if(typeof (GLOBAL_CONFIG["path_track_" + i]) === "string"){
+      let type_of_track = GLOBAL_CONFIG.radio_tracks[i].type;
+      if(type_of_track === "radio_track"){
         radioTracks.push(
           {
-            "id":i,
-            "path":GLOBAL_CONFIG["path_track_" + i],
-            "frequency":GLOBAL_CONFIG["frequency_track_" + i],
+            "id":i+1,
+            "path":GLOBAL_CONFIG.radio_tracks[i].path,
+            "frequency":GLOBAL_CONFIG.radio_tracks[i].frequency,
             "volume":0,
             "completed":false,
-            "required":true,
-          }
-        );
-      }
-      // Load the initial State with the morse sounds defined in the Config file
-      if(typeof (GLOBAL_CONFIG["plain_text_to_morse_" + i]) === "string"){
-        radioTracks.push(
-          {
-            "id":i + 1000,
-            "path":"./assets/sounds/morse/morse_sound_from_plain_text_" + i + ".mp3",
-            "frequency":GLOBAL_CONFIG["frequency_plain_text_" + i],
-            "volume":0,
-            "completed":false,
-            "required":true,
-
-          }
-        );
-      }
-      if(typeof (GLOBAL_CONFIG["coded_text_to_morse_" + i]) === "string"){
-        radioTracks.push(
-          {
-            "id":i + 2000,
-            "path":"./assets/sounds/morse/morse_sound_from_coded_text_" + i + ".mp3",
-            "frequency":GLOBAL_CONFIG["frequency_coded_text_" + i],
-            "volume":0,
-            "completed":false,
-            "required":true,
-
+            "required":GLOBAL_CONFIG.radio_tracks[i].required,
           }
         );
       }
 
-      if(typeof (GLOBAL_CONFIG["path_fake_track_" + i]) === "string"){
+      if(type_of_track === "morse_plain_text"){
         radioTracks.push(
           {
-            "id":i + 3000,
-            "path":GLOBAL_CONFIG["path_fake_track_" + i],
-            "frequency":GLOBAL_CONFIG["frequency_fake_track_" + i],
+            "id":i+1,
+            "path":"./assets/sounds/morse/morse_sound_from_plain_text_" + j + ".mp3",
+            "frequency":GLOBAL_CONFIG.radio_tracks[i].frequency,
             "volume":0,
             "completed":false,
-            "required":false,
-
+            "required":GLOBAL_CONFIG.radio_tracks[i].required,
           }
         );
+        j++;
       }
 
-      if(typeof (GLOBAL_CONFIG["plain_text_to_morse_fake_" + i]) === "string"){
+      if(type_of_track === "morse_coded_text"){
         radioTracks.push(
           {
-            "id":i + 4000,
-            "path":"./assets/sounds/morse/morse_sound_from_plain_text_fake_" + i + ".mp3",
-            "frequency":GLOBAL_CONFIG["frequency_plain_text_fake_" + i],
+            "id":i+1,
+            "path":"./assets/sounds/morse/morse_sound_from_coded_text_" + k + ".mp3",
+            "frequency":GLOBAL_CONFIG.radio_tracks[i].frequency,
             "volume":0,
             "completed":false,
-            "required":false,
-
+            "required":GLOBAL_CONFIG.radio_tracks[i].required,
           }
         );
+        k++;
       }
-      if(typeof (GLOBAL_CONFIG["coded_text_to_morse_fake_" + i]) === "string"){
-        radioTracks.push(
-          {
-            "id":i + 5000,
-            "path":"./assets/sounds/morse/morse_sound_from_coded_text_fake_" + i + ".mp3",
-            "frequency":GLOBAL_CONFIG["frequency_coded_text_fake_" + i],
-            "volume":0,
-            "completed":false,
-            "required":false,
-
-          }
-        );
-      }
-
 
     }
+    // // Load the initial State with the morse sounds defined in the Config file
+    // if(typeof (GLOBAL_CONFIG["plain_text_to_morse_" + i]) === "string"){
+    //   radioTracks.push(
+    //     {
+    //       "id":i + 1000,
+    //       "path":"./assets/sounds/morse/morse_sound_from_plain_text_" + i + ".mp3",
+    //       "frequency":GLOBAL_CONFIG["frequency_plain_text_" + i],
+    //       "volume":0,
+    //       "completed":false,
+    //       "required":true,
+
+    //     }
+    //   );
+    // }
+    // if(typeof (GLOBAL_CONFIG["coded_text_to_morse_" + i]) === "string"){
+    //   radioTracks.push(
+    //     {
+    //       "id":i + 2000,
+    //       "path":"./assets/sounds/morse/morse_sound_from_coded_text_" + i + ".mp3",
+    //       "frequency":GLOBAL_CONFIG["frequency_coded_text_" + i],
+    //       "volume":0,
+    //       "completed":false,
+    //       "required":true,
+
+    //     }
+    //   );
+    // }
+
+    // if(typeof (GLOBAL_CONFIG["path_fake_track_" + i]) === "string"){
+    //   radioTracks.push(
+    //     {
+    //       "id":i + 3000,
+    //       "path":GLOBAL_CONFIG["path_fake_track_" + i],
+    //       "frequency":GLOBAL_CONFIG["frequency_fake_track_" + i],
+    //       "volume":0,
+    //       "completed":false,
+    //       "required":false,
+
+    //     }
+    //   );
+    // }
+
+    // if(typeof (GLOBAL_CONFIG["plain_text_to_morse_fake_" + i]) === "string"){
+    //   radioTracks.push(
+    //     {
+    //       "id":i + 4000,
+    //       "path":"./assets/sounds/morse/morse_sound_from_plain_text_fake_" + i + ".mp3",
+    //       "frequency":GLOBAL_CONFIG["frequency_plain_text_fake_" + i],
+    //       "volume":0,
+    //       "completed":false,
+    //       "required":false,
+
+    //     }
+    //   );
+    // }
+    // if(typeof (GLOBAL_CONFIG["coded_text_to_morse_fake_" + i]) === "string"){
+    //   radioTracks.push(
+    //     {
+    //       "id":i + 5000,
+    //       "path":"./assets/sounds/morse/morse_sound_from_coded_text_fake_" + i + ".mp3",
+    //       "frequency":GLOBAL_CONFIG["frequency_coded_text_fake_" + i],
+    //       "volume":0,
+    //       "completed":false,
+    //       "required":false,
+
+    //     }
+    //   );
+    // }
+
+
+    // }
     return radioTracks;
   }
 
@@ -213,7 +240,7 @@ export class App extends React.Component {
         track.volume = this.setNoiseVolume(tracks);
       } else if(this.isCloseToFrequency(freq, track.frequency, GLOBAL_CONFIG.delta)){
         track.volume = this.setVolume(this.distanceToFrequency(freq, track.frequency), GLOBAL_CONFIG.delta);
-      } else{
+      } else {
         track.volume = 0;
       }
       return track;
@@ -259,28 +286,28 @@ export class App extends React.Component {
 
   loadCassettes(){
     let cassetteTracks = Object.assign([], this.props.cassetteTracks);
-    for(let i = 1; i < 20; i++){
-      if(typeof (GLOBAL_CONFIG["cassette_" + i]) === "object"){
-        let cassette = Object.assign({}, GLOBAL_CONFIG["cassette_" + i]);
+    for(let i = 0; i < GLOBAL_CONFIG.cassettes.length; i++){
+      // if(typeof (GLOBAL_CONFIG["cassette_" + i]) === "object"){
+        let cassette = Object.assign({}, GLOBAL_CONFIG.cassettes[i]);
 
         cassetteTracks.push(
           {
             "id":i,
             "title":cassette.title,
-            "titleFont": this.getRandomFont(),
+            "titleFont":this.getRandomFont(),
             "artist":cassette.artist,
-            "color": this.getRandomColor(),
+            "color":this.getRandomColor(),
             "tracks":cassette.tracks,
           }
         );
 
       }
-    }
+    
 
-    //Push the completed field in each track
-    for(let i=0; i<cassetteTracks.length; i++){
-      for(let j=0; j<cassetteTracks[i].tracks.length; j++){
-        cassetteTracks[i].tracks[j].completed=false;
+    // Push the completed field in each track
+    for(let i = 0; i < cassetteTracks.length; i++){
+      for(let j = 0; j < cassetteTracks[i].tracks.length; j++){
+        cassetteTracks[i].tracks[j].completed = false;
       }
     }
     this.props.dispatch(updateCassetteTracks(cassetteTracks));
@@ -288,87 +315,85 @@ export class App extends React.Component {
 
   onSelectCassette(idCassette){
     this.setState({id_cassette_selected:idCassette});
+  
   }
 
-
-checkRadioTrackCompleted(listening_music_time, duration_music_time, trackId, isRequired){
-  if(listening_music_time > duration_music_time){
-    console.log("Track " + trackId + " completed.");
-    this.props.dispatch(trackCompleted(trackId));
-    if(isRequired){
-      this.checkAllRadioTracksCompleted();
-    }
-    else if(GLOBAL_CONFIG.strict_mode){
-      console.log("Has escuchado un audio que no deberías. No puedes seguir jugando");
-      this.setState({show_error_message: true});
-    }
-    else{
-      console.log("Has escuchado un audio que no deberías. Pero PUEDES seguir jugando");
-      this.setState({show_info_message: true});
-    }
-  }
-}
-
-checkAllRadioTracksCompleted(){
-    let tracks = Object.assign([], this.props.radioTracks);
-  let flag_completed = true;
-  for (let i=0; i<tracks.length;i++){
-    if(tracks[i].required && !tracks[i].completed){
-      flag_completed = false;
-    }
-  }
-  if(flag_completed){
-    this.props.dispatch(radioTracksCompleted());
-
-    console.log("All radio tracks completed.");
-  }
-}
-
-
-
-  checkCassetteTrackCompleted(idCassette, trackNumber){
-      this.props.dispatch(cassetteTrackCompleted(idCassette, trackNumber));
-      if(this.props.cassetteTracks[idCassette-1].tracks[trackNumber].required){
-        console.log("Correct track.");
-        this.checkAllCassetteTracksCompleted();
+  checkRadioTrackCompleted(listening_music_time, duration_music_time, trackId, isRequired){
+    if(listening_music_time > duration_music_time){
+      console.log("Track " + trackId + " completed.");
+      this.props.dispatch(trackCompleted(trackId));
+      if(isRequired){
+        this.checkAllRadioTracksCompleted();
       }
       else if(GLOBAL_CONFIG.strict_mode){
-        console.log("You fail. You cannot continue playing.");
+        console.log("Has escuchado un audio que no deberías. No puedes seguir jugando");
+        this.setState({show_error_message:true});
       }
-      else{
-        console.log("YOu fail but you can continue playing.");
+      else {
+        console.log("Has escuchado un audio que no deberías. Pero PUEDES seguir jugando");
+        this.setState({show_info_message:true});
       }
     }
+  }
 
-    checkAllCassetteTracksCompleted(){
-      let cassettes = this.props.cassetteTracks;
-      let flag_completed = true;
-      for (let i=0; i<cassettes.length;i++){
-        for(let j=0; j<cassettes[i].tracks.length; j++){
-          if(cassettes[i].tracks[j].required && !cassettes[i].tracks[j].completed){
-            flag_completed = false;
-          }
+  checkAllRadioTracksCompleted(){
+    let tracks = Object.assign([], this.props.radioTracks);
+    let flag_completed = true;
+    for(let i = 0; i < tracks.length; i++){
+      if(tracks[i].required && !tracks[i].completed){
+        flag_completed = false;
+      }
+    }
+    if(flag_completed){
+      this.props.dispatch(radioTracksCompleted());
+
+      console.log("All radio tracks completed.");
+    }
+  }
+
+  checkCassetteTrackCompleted(idCassette, trackNumber){
+    this.props.dispatch(cassetteTrackCompleted(idCassette, trackNumber));
+    if(this.props.cassetteTracks[idCassette - 1].tracks[trackNumber].required){
+      console.log("Correct track.");
+      this.checkAllCassetteTracksCompleted();
+    }
+    else if(GLOBAL_CONFIG.strict_mode){
+      console.log("You fail. You cannot continue playing.");
+    }
+    else {
+      console.log("YOu fail but you can continue playing.");
+    }
+  }
+
+  checkAllCassetteTracksCompleted(){
+    let cassettes = this.props.cassetteTracks;
+    let flag_completed = true;
+    for(let i = 0; i < cassettes.length; i++){
+      for(let j = 0; j < cassettes[i].tracks.length; j++){
+        if(cassettes[i].tracks[j].required && !cassettes[i].tracks[j].completed){
+          flag_completed = false;
         }
+      }
 
-      }
-      if(flag_completed){
-        this.props.dispatch(cassetteTracksCompleted());
-        console.log("All cassette tracks completed.");
-        this.checkChallengeAccomplished();
-      }
     }
+    if(flag_completed){
+      this.props.dispatch(cassetteTracksCompleted());
+      console.log("All cassette tracks completed.");
+      this.checkChallengeAccomplished();
+    }
+  }
   checkChallengeAccomplished(){
     if(this.props.cassetteTracksCompleted && this.props.radioTracksCompleted){
-      this.props.dispatch(objectiveAccomplished(1,1));
+      this.props.dispatch(objectiveAccomplished(1, 1));
       console.log("SCORM: Objective Accomplished");
-      this.setState({show_success_message: true});
+      this.setState({show_success_message:true});
 
     }
-}
-  getRandomColor() {
+  }
+  getRandomColor(){
     return "hsl(" + 360 * Math.random() + ',' +
       (25 + 70 * Math.random()) + '%,' +
-      (85 + 10 * Math.random()) + '%)'
+      (85 + 10 * Math.random()) + '%)';
   }
   getRandomFont(){
     let fonts = [
@@ -383,12 +408,8 @@ checkAllRadioTracksCompleted(){
       "droid-sans-mono",
       "anton",
     ];
-    return fonts[Math.floor(Math.random()*(fonts.length-1))];
+    return fonts[Math.floor(Math.random() * (fonts.length - 1))];
   }
-
-
-
-
 
 }
 function mapStateToProps(state){

@@ -38,7 +38,7 @@ render(){
 
     return (
       <>
-        <div className="cassette" style={{backgroundColor: this.props.cassetteTracks.color}} onClick={()=>{this.props.onSelectCassette(this.props.id)}}>
+        <div className="cassette" style={{backgroundColor: this.props.cassetteTracks.color}} onClick={()=>{this.props.onSelectCassette(this.props.id); this.props.resetTrackNumber();}}>
             <p id="albumTitle" className={this.props.cassetteTracks.titleFont}>
                 {this.props.albumTitle}
             </p>

@@ -1,23 +1,44 @@
 let GLOBAL_CONFIG_DEVELOPMENT = {
 
-  initial_frequency: 100,
-  max_frequency: 110,
-  min_frequency: 90,
-  step_frequency: 0.01,
-  delta: 0.5,
+  initial_frequency:100,
+  max_frequency:110,
+  min_frequency:90,
+  step_frequency:0.01,
+  delta:0.5,
 
-  //Tracks
-  path_track_1: "./assets/sounds/prueba1.mp3",
-  frequency_track_1: 91.0,
+  // Tracks
+  radio_tracks:[
+    {
+      type:"radio_track",
+      path:"./assets/sounds/prueba1.mp3",
+      frequency:91.0,
+      required:true,
+    },
+    {
+      type:"morse_plain_text",
+      text:"SOS",
+      frequency:92,
+      required:true,
+    },
+    {
+      type:"morse_coded_text",
+      code:"... --- ...",
+      frequency:93.0,
+      required:true,
+    },
+  ],
+  // path_track_1: "./assets/sounds/prueba1.mp3",
+  // frequency_track_1: 91.0,
 
   // path_track_2: "./assets/sounds/prueba2.mp3",
   // frequency_track_2: 95.3,
 
-  path_fake_track_1: "./assets/sounds/prueba2.mp3",
-  frequency_fake_track_1: 94,
+  // path_fake_track_1: "./assets/sounds/prueba2.mp3",
+  // frequency_fake_track_1: 94,
   //
   // path_track_3: "./assets/sounds/backgroundMusic.mp3",
   // frequency_track_3: 98.3,
+
 
   // plain_text_to_morse_1:"The code is 14",
   // frequency_plain_text_1:92,
@@ -40,77 +61,148 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
   // coded_text_to_morse_fake_1: "--- ... ---",
   // frequency_coded_text_fake_1:96,
 
-  cassette_1:{
-    title: "Abbey Road",
-    artist: "The Beatles",
-    tracks:[
-      {
-        title: "Come together",
-        path: "./assets/sounds/prueba1.mp3",
-        required: true,
-      },
-      {
-        title: "Something",
-        path: "./assets/sounds/prueba2.mp3",
-        required: false,
+  show_instructions_title:true,
 
-      },
+  cassettes:[
+    {
+      title:"Abbey Road",
+      artist:"The Beatles",
+      tracks:[
+        {
+          title:"Come together",
+          path:"./assets/sounds/prueba1.mp3",
+          required:true,
+        },
+        {
+          title:"Something",
+          path:"./assets/sounds/prueba2.mp3",
+          required:false,
 
-    ],
-  },
+        },
 
-cassette_2:{
-    title: "The Rolling Stones",
-    artist: "The Rolling Stones",
-    tracks:[
-      {
-        title: "Route 66",
-        path: "./assets/sounds/prueba2.mp3",
-        required: true,
+      ],
+    },
+    {
+      title:"The Rolling Stones",
+      artist:"The Rolling Stones",
+      tracks:[
+        {
+          title:"Route 66",
+          path:"./assets/sounds/prueba2.mp3",
+          required:true,
 
-      },
-      {
-        title: "I Just Want to Make Love to You",
-        path: "./assets/sounds/prueba1.mp3",
-        required: false,
-      },
-      {
-        title: "Honest I do",
-        path: "./assets/sounds/prueba1.mp3",
-        required: false,
-      },
+        },
+        {
+          title:"I Just Want to Make Love to You",
+          path:"./assets/sounds/prueba1.mp3",
+          required:false,
+        },
+        {
+          title:"Honest I do",
+          path:"./assets/sounds/prueba1.mp3",
+          required:false,
+        },
 
-    ],
-  },
+      ],
+    },
+    {
+      title:"A night at the Opera",
+      artist:"Queen",
+      tracks:[
+        {
+          title:"Death on Two Legs",
+          path:"./assets/sounds/prueba1.mp3",
+          required:false,
 
-cassette_3:{
-    title: "A night at the Opera",
-    artist: "Queen",
-    tracks:[
-      {
-        title: "Death on Two Legs",
-        path: "./assets/sounds/prueba1.mp3",
-        required: false,
+        },
+        {
+          title:"Lazing on a Sunday Afternoon",
+          path:"./assets/sounds/prueba2.mp3",
+          required:true,
 
-      },
-      {
-        title: "Lazing on a Sunday Afternoon",
-        path: "./assets/sounds/prueba2.mp3",
-        required: true,
+        },
+        {
+          title:"I'm in Love with My Car",
+          path:"./assets/sounds/prueba2.mp3",
+          required:true,
 
-      },
-      {
-        title: "I'm in Love with My Car",
-        path: "./assets/sounds/prueba2.mp3",
-        required: true,
+        },
 
-      },
+      ],
+    },
 
-    ],
-  },
+  ],
 
-  strict_mode: true,
+  // cassette_1:{
+  //   title: "Abbey Road",
+  //   artist: "The Beatles",
+  //   tracks:[
+  //     {
+  //       title: "Come together",
+  //       path: "./assets/sounds/prueba1.mp3",
+  //       required: true,
+  //     },
+  //     {
+  //       title: "Something",
+  //       path: "./assets/sounds/prueba2.mp3",
+  //       required: false,
 
+  //     },
+
+  //   ],
+  // },
+
+  // cassette_2:{
+  //     title: "The Rolling Stones",
+  //     artist: "The Rolling Stones",
+  //     tracks:[
+  //       {
+  //         title: "Route 66",
+  //         path: "./assets/sounds/prueba2.mp3",
+  //         required: true,
+
+  //       },
+  //       {
+  //         title: "I Just Want to Make Love to You",
+  //         path: "./assets/sounds/prueba1.mp3",
+  //         required: false,
+  //       },
+  //       {
+  //         title: "Honest I do",
+  //         path: "./assets/sounds/prueba1.mp3",
+  //         required: false,
+  //       },
+
+  //     ],
+  //   },
+
+  // cassette_3:{
+  //     title: "A night at the Opera",
+  //     artist: "Queen",
+  //     tracks:[
+  //       {
+  //         title: "Death on Two Legs",
+  //         path: "./assets/sounds/prueba1.mp3",
+  //         required: false,
+
+  //       },
+  //       {
+  //         title: "Lazing on a Sunday Afternoon",
+  //         path: "./assets/sounds/prueba2.mp3",
+  //         required: true,
+
+  //       },
+  //       {
+  //         title: "I'm in Love with My Car",
+  //         path: "./assets/sounds/prueba2.mp3",
+  //         required: true,
+
+  //       },
+
+  //     ],
+  //   },
+
+  strict_mode:true,
 
   // No tocar
   debug:true,

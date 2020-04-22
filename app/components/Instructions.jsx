@@ -1,6 +1,8 @@
 import React from 'react';
 import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+let GLOBAL_CONFIG = require('../config/config.js');
+
 
 export default class Instructions extends React.Component {
 
@@ -21,6 +23,14 @@ handleClick(){
   render(){
       let id_animated = this.state.id_animated;
       let instructions;
+      let instructionsTitle="";
+      if(GLOBAL_CONFIG.show_instructions_title){
+
+      
+      instructionsTitle= (
+        <p className="instructionsTitle">Instrucciones</p>
+      );
+      }
       this.state.show_instructions?instructions=(
         <>
         <img id={"instructionsImageBackground"}
@@ -62,6 +72,7 @@ handleClick(){
     return (
       <>
         <div >
+          {instructionsTitle}
           <img id={id_animated===true ? "paperInstructionsAnimated" : "paperInstructions"}
                src="../assets/images/instructions.png"
                onClick={this.handleClick}/>

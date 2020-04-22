@@ -27,6 +27,7 @@ export default class RadioImage extends React.Component {
     this.onMute = this.onMute.bind(this);
     this.onStop = this.onStop.bind(this);
     this.onEnded = this.onEnded.bind(this);
+    this.resetTrackNumber = this.resetTrackNumber.bind(this);
 
   }
 
@@ -56,8 +57,8 @@ export default class RadioImage extends React.Component {
     let color;
     this.props.playingMusicValue ? color = "buttonOn" : color = "buttonOff";
     const marks = [];
-    let cassetteTrackTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected!==-1 ? this.props.cassetteTracks[this.props.idCassetteSelected-1].tracks[this.state.track_number].title : "";
-    let cassetteTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected!==-1  ? this.props.cassetteTracks[this.props.idCassetteSelected-1].title : "";
+    let cassetteTrackTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected!==-1 ? this.props.cassetteTracks[this.props.idCassetteSelected].tracks[this.state.track_number].title : "";
+    let cassetteTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected!==-1  ? this.props.cassetteTracks[this.props.idCassetteSelected].title : "";
     let trackNumber = this.state.track_number + 1;
     let tracksDisplay ="";
     this.props.idCassetteSelected !== -1? tracksDisplay=(
@@ -124,6 +125,7 @@ export default class RadioImage extends React.Component {
             onEnded = {this.onEnded}
             idCassetteSelected = {this.props.idCassetteSelected}
             globalVolume = {this.props.globalVolume}
+            resetTrackNumber={this.resetTrackNumber}
 
 
           />
@@ -168,7 +170,7 @@ export default class RadioImage extends React.Component {
     console.log("Longitud de tracks (debe ser 2): ");
     console.log( this.props.cassetteTracks[0].tracks.length);
 
-    if(trackNumber === this.props.cassetteTracks[0].tracks.length -1){
+    if(trackNumber === this.props.cassetteTracks[this.props.idCassetteSelected].tracks.length-1){
       this.setState({track_number: 0});
     }
     else{
@@ -178,7 +180,7 @@ export default class RadioImage extends React.Component {
   }
   onPrev(){
     let trackNumber = this.state.track_number;
-    let lastTrack = this.props.cassetteTracks[0].tracks.length - 1;
+    let lastTrack = this.props.cassetteTracks[this.props.idCassetteSelected].tracks.length - 1;
     console.log("Last track: " + lastTrack);
     if(trackNumber === 0){
       trackNumber = lastTrack;
@@ -214,6 +216,10 @@ export default class RadioImage extends React.Component {
     this.props.checkCassetteTrackCompleted(idCassette, trackNumber);
     this.props.checkAllCassetteTracksCompleted();
 
+  }
+
+  resetTrackNumber(){
+    this.setState({track_number: 0});
   }
 
 }
