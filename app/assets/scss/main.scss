@@ -178,18 +178,20 @@ svg{
   width:3.5vw !important;
 }
 //Modification of slider style
-.MuiSlider-thumb{
+#frequencySlider .MuiSlider-thumb{
   border-radius: 0px !important;
   height: 100% !important;
   width: 0.5% !important;
   margin-top: -25px !important;
 }
 
-.MuiSlider-markLabel{
+#frequencySlider .MuiSlider-markLabel{
   color:white !important;
   top: 15px !important;
   font-size: 1vw !important;
 }
+
+
 
 //Radio image
 #radioImg{
@@ -473,6 +475,31 @@ svg{
   top: 17vh;
   left: 82%;
 }
+
+//Volume vertical slider
+#volumeVerticalSlider{
+  color: black;
+  position: absolute;
+  top: 26%;
+  left: 24vw;
+  width: 36%;
+  height: 12%;
+  z-index: 3;
+}
+
+#volumeVerticalSlider .MuiSlider-thumb{
+  border-radius: 0px !important;
+  height: 10% !important;
+  width: 5% !important;
+  margin-left: -0.78vw !important;
+}
+
+#volumeVerticalSlider .MuiSlider-markLabel{
+  color:white !important;
+  top: 25px !important;
+  font-size: 1vw !important;
+}
+
 
 div.header_wrapper img {
   width: 71px;

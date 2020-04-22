@@ -94,20 +94,32 @@ export default class RadioImage extends React.Component {
             onChange = {this.handleFrequencyChange}
           />
 
-          <div id="volumeRoundSlider">
-            <WheelSlider
-              type= "frequencyRoundSlide"
-              minValue = {0}
-              maxValue = {1}
-              initialValue={0.5}
-              step = {0.05}
-              conf = {this.props.conf}
-              dispatch = {this.props.dispatch}
-              onChange= {(volume)=>{this.props.globalVolumeFunction(volume);}}
+          {/*<div id="volumeRoundSlider">*/}
+          {/*  <WheelSlider*/}
+          {/*    type= "frequencyRoundSlide"*/}
+          {/*    minValue = {0}*/}
+          {/*    maxValue = {1}*/}
+          {/*    initialValue={0.5}*/}
+          {/*    step = {0.05}*/}
+          {/*    conf = {this.props.conf}*/}
+          {/*    dispatch = {this.props.dispatch}*/}
+          {/*    onChange= {(volume)=>{this.props.globalVolumeFunction(volume);}}*/}
 
-            />
-          </div>
+          {/*  />*/}
+          {/*</div>*/}
 
+          <Slider
+            id="volumeVerticalSlider"
+            orientation={"vertical"}
+            defaultValue={0.5}
+            max={1}
+            min={0}
+            step={0.1}
+            onChange= {(ev,volume)=>{this.props.globalVolumeFunction(volume);}}
+            // onChange= {(volume)=>{console.log("VOLU;E:"+ volume.toString());}}
+            marks
+
+          />d
           <div id="lightOnOff" className={color} />
 
           <FrequencyDisplay
