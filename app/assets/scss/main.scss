@@ -158,24 +158,23 @@ html, body, #root, #root > div {
 
 svg{
   position: absolute;
-  // height: 15% !important;
-  top: 16vh;
-  left: 68.5%;
+  top: 22vh;
+  left: 68%;
   z-index:3 !important;
-  width:6vw;
-   height:28vh;
+  width:7vw;
+  height:auto !important;
 
 }
 
 #volumeRoundSlider{
   position: absolute;
-  top:11.3vh !important;
-  left:39.3%;
+  top:14.5vh !important;
+  left:39%;
   z-index:3;
 }
 
 #volumeRoundSlider svg{
-  width:3.5vw !important;
+  width:4.2vw !important;
 }
 //Modification of slider style
 #frequencySlider .MuiSlider-thumb{

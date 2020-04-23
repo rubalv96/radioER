@@ -13,11 +13,11 @@ export default class RadioImage extends React.Component {
 
   constructor(props){
     super(props);
-    this.state={
+    this.state = {
       playing_cassette:false,
       track_number:0,
-      stop_playing: false,
-      muted: false,
+      stop_playing:false,
+      muted:false,
     };
     this.handleFrequencyChange = this.handleFrequencyChange.bind(this);
     this.onPlay = this.onPlay.bind(this);
@@ -57,13 +57,13 @@ export default class RadioImage extends React.Component {
     let color;
     this.props.playingMusicValue ? color = "buttonOn" : color = "buttonOff";
     const marks = [];
-    let cassetteTrackTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected!==-1 ? this.props.cassetteTracks[this.props.idCassetteSelected].tracks[this.state.track_number].title : "";
-    let cassetteTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected!==-1  ? this.props.cassetteTracks[this.props.idCassetteSelected].title : "";
+    let cassetteTrackTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected !== -1 ? this.props.cassetteTracks[this.props.idCassetteSelected].tracks[this.state.track_number].title : "";
+    let cassetteTitle = this.props.cassetteTracks[0] !== undefined && this.props.idCassetteSelected !== -1 ? this.props.cassetteTracks[this.props.idCassetteSelected].title : "";
     let trackNumber = this.state.track_number + 1;
-    let tracksDisplay ="";
-    this.props.idCassetteSelected !== -1? tracksDisplay=(
+    let tracksDisplay = "";
+    this.props.idCassetteSelected !== -1 ? tracksDisplay = (
       <><b>Track {trackNumber}</b>. {cassetteTrackTitle}</>
-  ) : tracksDisplay="Insert Cassette";
+    ) : tracksDisplay = "Insert Cassette";
     return (
       <>
 
@@ -94,21 +94,21 @@ export default class RadioImage extends React.Component {
             onChange = {this.handleFrequencyChange}
           />
 
-          {/*<div id="volumeRoundSlider">*/}
-          {/*  <WheelSlider*/}
-          {/*    type= "frequencyRoundSlide"*/}
-          {/*    minValue = {0}*/}
-          {/*    maxValue = {1}*/}
-          {/*    initialValue={0.5}*/}
-          {/*    step = {0.05}*/}
-          {/*    conf = {this.props.conf}*/}
-          {/*    dispatch = {this.props.dispatch}*/}
-          {/*    onChange= {(volume)=>{this.props.globalVolumeFunction(volume);}}*/}
+          <div id="volumeRoundSlider">
+            <WheelSlider
+              type= "frequencyRoundSlide"
+              minValue = {0}
+              maxValue = {1}
+              initialValue={0.5}
+              step = {0.05}
+              conf = {this.props.conf}
+              dispatch = {this.props.dispatch}
+              onChange= {(volume)=>{this.props.globalVolumeFunction(volume);}}
 
-          {/*  />*/}
-          {/*</div>*/}
+            />
+          </div>
 
-          <Slider
+          {/* <Slider
             id="volumeVerticalSlider"
             orientation={"vertical"}
             defaultValue={0.5}
@@ -119,7 +119,7 @@ export default class RadioImage extends React.Component {
             // onChange= {(volume)=>{console.log("VOLU;E:"+ volume.toString());}}
             marks
 
-          />d
+          />d */}
           <div id="lightOnOff" className={color} />
 
           <FrequencyDisplay
@@ -138,7 +138,6 @@ export default class RadioImage extends React.Component {
             idCassetteSelected = {this.props.idCassetteSelected}
             globalVolume = {this.props.globalVolume}
             resetTrackNumber={this.resetTrackNumber}
-
 
           />
 
@@ -166,27 +165,27 @@ export default class RadioImage extends React.Component {
       </>
     );
 
-    }
+  }
 
   onPlay(){
-    this.setState({playing_cassette: true});
-    this.setState({stop_playing: false});
+    this.setState({playing_cassette:true});
+    this.setState({stop_playing:false});
   }
 
   onPause(){
-    this.setState({playing_cassette: false});
+    this.setState({playing_cassette:false});
   }
 
   onNext(){
     let trackNumber = this.state.track_number;
     console.log("Longitud de tracks (debe ser 2): ");
-    console.log( this.props.cassetteTracks[0].tracks.length);
+    console.log(this.props.cassetteTracks[0].tracks.length);
 
-    if(trackNumber === this.props.cassetteTracks[this.props.idCassetteSelected].tracks.length-1){
-      this.setState({track_number: 0});
+    if(trackNumber === this.props.cassetteTracks[this.props.idCassetteSelected].tracks.length - 1){
+      this.setState({track_number:0});
     }
-    else{
-      this.setState({track_number: trackNumber+1});
+    else {
+      this.setState({track_number:trackNumber + 1});
     }
     console.log("Next. Track " + this.state.track_number);
   }
@@ -197,24 +196,24 @@ export default class RadioImage extends React.Component {
     if(trackNumber === 0){
       trackNumber = lastTrack;
     }
-    else{
-      trackNumber = trackNumber -1;
+    else {
+      trackNumber = trackNumber - 1;
     }
-    this.setState({track_number: trackNumber});
+    this.setState({track_number:trackNumber});
     console.log("PREV. Track" + this.state.track_number);
   }
 
   onMute(){
     let isMuted = this.state.muted;
-    this.setState({muted: !isMuted});
+    this.setState({muted:!isMuted});
 
   }
 
   onStop(){
     let trackNumber = 0;
-    this.setState({track_number: trackNumber});
-    this.setState({playing_cassette: false});
-    this.setState({stop_playing: true});
+    this.setState({track_number:trackNumber});
+    this.setState({playing_cassette:false});
+    this.setState({stop_playing:true});
     console.log("STOP. Track " + this.state.track_number);
   }
 
@@ -223,15 +222,15 @@ export default class RadioImage extends React.Component {
     // Pasar a completado el track
     // Comprobar que era requerido
     // Comprobar si esta escuhados todos los tracks
-    this.setState({playing_cassette: false});
-    this.setState({stop_playing: true});
+    this.setState({playing_cassette:false});
+    this.setState({stop_playing:true});
     this.props.checkCassetteTrackCompleted(idCassette, trackNumber);
     this.props.checkAllCassetteTracksCompleted();
 
   }
 
   resetTrackNumber(){
-    this.setState({track_number: 0});
+    this.setState({track_number:0});
   }
 
 }
