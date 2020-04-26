@@ -14,17 +14,14 @@ export default class AudioCassettes extends React.Component {
 
     let cassettes = this.props.cassetteTracks;
 
-
-
     return (
-        <div>
-             <img id="shelving" src="./assets/images/estante.png"/>
-
+      <div>
+        <img id="shelving" src="./assets/images/estante.png"/>
 
         <div id="cassettesGroup">
 
           {cassettes.map((cassette, ind)=>{
-            return(
+            return (
               <Cassette
                 key={ind}
                 id={cassette.id}
@@ -40,13 +37,15 @@ export default class AudioCassettes extends React.Component {
                 isSelected = {this.props.idCassetteSelected === cassette.id}
                 globalVolume = {this.props.globalVolume}
                 resetTrackNumber={this.props.resetTrackNumber}
+                checkCassetteTrackCompleted = {this.props.checkCassetteTrackCompleted}
+                checkAllCassetteTracksCompleted = {this.props.checkAllCassetteTracksCompleted}
 
               />
             );
           })}
 
         </div>
-    </div>
+      </div>
     );
   }
 

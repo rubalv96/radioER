@@ -18,6 +18,7 @@ export default class RadioImage extends React.Component {
       track_number:0,
       stop_playing:false,
       muted:false,
+      listening_cassette_time:0,
     };
     this.handleFrequencyChange = this.handleFrequencyChange.bind(this);
     this.onPlay = this.onPlay.bind(this);
@@ -138,7 +139,8 @@ export default class RadioImage extends React.Component {
             idCassetteSelected = {this.props.idCassetteSelected}
             globalVolume = {this.props.globalVolume}
             resetTrackNumber={this.resetTrackNumber}
-
+            checkCassetteTrackCompleted = {this.props.checkCassetteTrackCompleted}
+            checkAllCassetteTracksCompleted = {this.props.checkAllCassetteTracksCompleted}
           />
 
           <ButtonsController
@@ -217,15 +219,13 @@ export default class RadioImage extends React.Component {
     console.log("STOP. Track " + this.state.track_number);
   }
 
-  onEnded(idCassette, trackNumber){
+  onEnded(){
 
     // Pasar a completado el track
     // Comprobar que era requerido
     // Comprobar si esta escuhados todos los tracks
     this.setState({playing_cassette:false});
     this.setState({stop_playing:true});
-    this.props.checkCassetteTrackCompleted(idCassette, trackNumber);
-    this.props.checkAllCassetteTracksCompleted();
 
   }
 

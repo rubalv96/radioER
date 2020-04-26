@@ -12,52 +12,35 @@ export default class ButtonsController extends React.Component {
   render(){
     let buttons = (
       <>
-        <div id="playButton" onClick={()=>{this.props.onPlay()}}>
-        </div>
-        <div id="pauseButton" onClick={()=>{this.props.onPause()}}>
-        </div>
-        <div id="nextButton" onClick={()=>{this.props.onNext()}}>
-        </div>
-        <div id="prevButton" onClick={()=>{this.props.onPrev()}}>
-        </div>
-        <div id="muteButton" onClick={()=>{this.props.onMute()}}>
-        </div>
-        <div id="stopButton" onClick={()=>{this.props.onStop()}}>
-        </div>
+        <div id="playButton" onClick={()=>{this.props.onPlay();}} />
+        <div id="pauseButton" onClick={()=>{this.props.onPause();}} />
+        <div id="nextButton" onClick={()=>{this.props.onNext();}} />
+        <div id="prevButton" onClick={()=>{this.props.onPrev();}} />
+        <div id="muteButton" onClick={()=>{this.props.onMute();}} />
+        <div id="stopButton" onClick={()=>{this.props.onStop();}} />
       </>
     );
 
     let playLed = this.props.playingCassette ? "ledON" : "ledOFF";
     let stopLed = this.props.stopPlaying ? "ledON" : "ledOFF";
     let muteLed = this.props.muted ? "ledON" : "ledOFF";
-    let pauseLed = (!this.props.playingCassette && this.props.isSomeCassetteSelected)  ? "ledON" : "ledOFF";
+    let pauseLed = (!this.props.playingCassette && this.props.isSomeCassetteSelected) ? "ledON" : "ledOFF";
 
-
-    let leds=(
+    let leds = (
       <>
-      <div id={"playLED"} className={playLed}>
-      </div>
+        <div id={"playLED"} className={playLed} />
 
-      <div id={"stopLED"} className={stopLed}>
-      </div>
+        <div id={"stopLED"} className={stopLed} />
 
-    <div id={"muteLED"} className={muteLed}>
-    </div>
+        <div id={"muteLED"} className={muteLed} />
 
-    <div id={"pauseLED"} className={pauseLed}>
-      </div>
+        <div id={"pauseLED"} className={pauseLed} />
 
-    <div id={"nextLED"} className={"nextLed"}>
-    </div>
+        <div id={"nextLED"} className={"nextLed"} />
 
-    <div id={"prevLED"} className={"prevLed"}>
-      </div>
-    </>
+        <div id={"prevLED"} className={"prevLed"} />
+      </>
     );
-
-
-
-
 
     return (
       <>

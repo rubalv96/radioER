@@ -34,20 +34,19 @@ export function loaded(is_loaded = true){
   };
 }
 
-
 // Radio actions
 
 export function updateTracks(tracks){
   return {
     type:'UPDATE_TRACKS',
-    tracks: tracks,
+    tracks:tracks,
   };
 }
 
 export function updateCassetteTracks(tracks){
   return {
     type:'UPDATE_CASSETTE_TRACKS',
-    tracks: tracks,
+    tracks:tracks,
   };
 }
 
@@ -61,27 +60,27 @@ export function changeFrequency(freq){
 export function trackCompleted(id){
   return {
     type:'TRACK_COMPLETED',
-    id: id,
-  }
+    id:id,
+  };
 }
 export function cassetteTrackCompleted(id, trackNumber){
   return {
     type:'CASSETTE_TRACK_COMPLETED',
     payload:{
-      id: id,
-      trackNumber: trackNumber,
+      id:id,
+      trackNumber:trackNumber,
     },
-  }
+  };
 }
 
 export function radioTracksCompleted(){
   return {
     type:'RADIO_TRACKS_COMPLETED',
-  }
+  };
 }
 
 export function cassetteTracksCompleted(){
   return {
     type:'CASSETTE_TRACKS_COMPLETED',
-  }
+  };
 }

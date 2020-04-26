@@ -4,7 +4,6 @@ import {objectiveAccomplished, radioTracksCompleted} from '../reducers/actions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Track from './Track';
 
-
 export default class TrackList extends React.Component {
 
   constructor(){
@@ -24,11 +23,12 @@ export default class TrackList extends React.Component {
         return (
           <Track
             key={index}
+            type={"radio"}
             id={track.id}
             path={track.path}
             frequency = {track.frequency}
             trackVolume = {track.volume }
-            globalVolume={track.volume* this.props.globalVolume}
+            globalVolume={track.volume * this.props.globalVolume}
             isCompleted = {track.completed}
             isRequired = {track.required}
             checkAllTracksCompleted = {this.checkAllTracksCompleted}

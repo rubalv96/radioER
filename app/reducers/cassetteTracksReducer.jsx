@@ -10,20 +10,22 @@ function cassetteTracksReducer(state = [], action){
 
   case 'CASSETTE_TRACK_COMPLETED':
     console.log("ACCION CASSETTE_TRACK_COMPLETES");
-    cassettes[action.payload.id -1].tracks[action.payload.trackNumber].completed = true;
-    console.log("Cassette track completed" + JSON.stringify(cassettes[action.payload.id -1].tracks));
+    console.log("CASSSETTES[" + action.payload.id - 1 + "].tracks[" + action.payload.trackNumber + "] ");
+    console.log("ID" + action.payload.id);
+    console.log("TRACKNUMBER" + action.payload.trackNumber);
+    cassettes[action.payload.id - 1].tracks[action.payload.trackNumber].completed = true;
+    console.log("Cassette track completed" + JSON.stringify(cassettes[action.payload.id - 1].tracks));
     return cassettes;
 
-
-  // case 'TRACK_COMPLETED':
-  //   new_tracks = tracks.map((track, index)=>{
-  //     if(track.id === action.id){
-  //       track.completed = true;
-  //     }
-  //     return track;
-  //   });
-  //
-  //   return new_tracks;
+    // case 'TRACK_COMPLETED':
+    //   new_tracks = tracks.map((track, index)=>{
+    //     if(track.id === action.id){
+    //       track.completed = true;
+    //     }
+    //     return track;
+    //   });
+    //
+    //   return new_tracks;
 
   default:
     return state;

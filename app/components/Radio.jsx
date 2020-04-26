@@ -25,21 +25,21 @@ export default class Radio extends React.Component {
     if(this.state.playing_music){
       this.setState({playing_music:false});
     }
-    else{
+    else {
       this.setState({playing_music:true});
     }
   }
 
   set_global_volume(global_volume){
-    this.setState({"global_volume": global_volume})
+    this.setState({"global_volume":global_volume});
   }
 
   render(){
     return (
       <>
         <div>
-        <BackgroundImage
-                imagePath="../assets/images/background.jpg"
+          <BackgroundImage
+            imagePath="../assets/images/background.jpg"
           />
           <RadioImage
             playingMusicFunction = {this.set_playing_music}
@@ -67,8 +67,6 @@ export default class Radio extends React.Component {
           />
 
           <Instructions/>
-
-
 
         </div>
 

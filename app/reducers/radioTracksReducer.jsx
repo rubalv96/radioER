@@ -9,8 +9,6 @@ function radioTracksReducer(state = [], action){
 
     return action.tracks;
 
-
-
   case 'TRACK_COMPLETED':
     new_tracks = tracks.map((track, index)=>{
       if(track.id === action.id){

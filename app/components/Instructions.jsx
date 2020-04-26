@@ -3,42 +3,40 @@ import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 let GLOBAL_CONFIG = require('../config/config.js');
 
-
 export default class Instructions extends React.Component {
 
   constructor(){
     super();
-    this.state={
+    this.state = {
       id_animated:true,
-      show_instructions: false,
+      show_instructions:false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-handleClick(){
-  this.setState({id_animated: false});
-  this.setState({show_instructions: true});
+  handleClick(){
+    this.setState({id_animated:false});
+    this.setState({show_instructions:true});
 
-}
+  }
   render(){
-      let id_animated = this.state.id_animated;
-      let instructions;
-      let instructionsTitle="";
-      if(GLOBAL_CONFIG.show_instructions_title){
+    let id_animated = this.state.id_animated;
+    let instructions;
+    let instructionsTitle = "";
+    if(GLOBAL_CONFIG.show_instructions_title){
 
-      
-      instructionsTitle= (
+      instructionsTitle = (
         <p className="instructionsTitle">Instrucciones</p>
       );
-      }
-      this.state.show_instructions?instructions=(
-        <>
+    }
+    this.state.show_instructions ? instructions = (
+      <>
         <img id={"instructionsImageBackground"}
-             src="../assets/images/instructions_old.png"
-             onClick={()=>{this.setState({show_instructions:false})}}
+          src="../assets/images/instructions_old.png"
+          onClick={()=>{this.setState({show_instructions:false});}}
 
         />
-        <div id={"instructionsMessage"} onClick={()=>{this.setState({show_instructions:false})}}>
+        <div id={"instructionsMessage"} onClick={()=>{this.setState({show_instructions:false});}}>
           <div>
             <p><b>Radio</b></p>
             <ul>
@@ -58,7 +56,7 @@ handleClick(){
               <li><b>Selección de cassette.</b> Primero se debe seleccionar un cassette de la estantería de la izquierda.</li>
               <li><b>Controles.</b> A través de los botones de control se puede reproducir, pausar, pasar al siguiente track o parar la reproducción.</li>
             </ul>
-             </div>
+          </div>
           <div>
             <p><b>Volumen</b></p>
             <p>Para ajustar el volumen se debe girar la rueda del volumen situada en la parte inferior de la pantalla de frecuencias</p>
@@ -67,19 +65,19 @@ handleClick(){
           </div>
 
         </div>
-        </>
-      ) : instructions="";
+      </>
+    ) : instructions = "";
     return (
       <>
         <div >
           {instructionsTitle}
-          <img id={id_animated===true ? "paperInstructionsAnimated" : "paperInstructions"}
-               src="../assets/images/instructions.png"
-               onClick={this.handleClick}/>
+          <img id={id_animated === true ? "paperInstructionsAnimated" : "paperInstructions"}
+            src="../assets/images/instructions.png"
+            onClick={this.handleClick}/>
           {instructions}
         </div>
       </>
-      );
+    );
   }
 
 }
