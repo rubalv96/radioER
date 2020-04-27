@@ -53,7 +53,6 @@ export default class Radio extends React.Component {
             onSelectCassette={this.props.onSelectCassette}
             idCassetteSelected = {this.props.idCassetteSelected}
             checkCassetteTrackCompleted = {this.props.checkCassetteTrackCompleted}
-            checkAllCassetteTracksCompleted = {this.props.checkAllCassetteTracksCompleted}
           />
 
           <TrackList
@@ -63,7 +62,6 @@ export default class Radio extends React.Component {
             dispatch = {this.props.dispatch}
             globalVolume = {this.state.global_volume}
             checkRadioTrackCompleted = {this.props.checkRadioTrackCompleted}
-            checkAllRadioTracksCompleted={this.props.checkAllRadioTracksCompleted}
           />
 
           <Instructions/>

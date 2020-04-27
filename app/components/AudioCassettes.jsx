@@ -38,7 +38,6 @@ export default class AudioCassettes extends React.Component {
                 globalVolume = {this.props.globalVolume}
                 resetTrackNumber={this.props.resetTrackNumber}
                 checkCassetteTrackCompleted = {this.props.checkCassetteTrackCompleted}
-                checkAllCassetteTracksCompleted = {this.props.checkAllCassetteTracksCompleted}
 
               />
             );

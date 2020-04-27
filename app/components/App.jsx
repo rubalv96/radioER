@@ -145,9 +145,7 @@ export class App extends React.Component {
             onFrequencyChange={this.changeFrequency}
             dispatch={this.props.dispatch}
             checkRadioTrackCompleted = {this.checkRadioTrackCompleted}
-            checkAllRadioTracksCompleted={this.checkAllRadioTracksCompleted}
             checkCassetteTrackCompleted = {this.checkCassetteTrackCompleted}
-            checkAllCassetteTracksCompleted = {this.checkAllCassetteTracksCompleted}
           />
 
           <AlertMessages
@@ -363,11 +361,16 @@ export class App extends React.Component {
 
   checkRadioTrackCompleted(listening_music_time, duration_music_time, trackId, isRequired){
     let timeToComplete;
-    if(this.props.radioTracks[trackId].required <= 1){
-      timeToComplete = this.props.radioTracks[trackId].required * duration_music_time;
+    if(this.props.radioTracks[trackId].required.toString().includes("%")){
+      let requiredString = this.props.radioTracks[trackId].required.toString();
+      let requiredStringShort = requiredString.slice(0,-1);
+      let requiredNumber = parseFloat(requiredStringShort)/100;
+      console.log("Required number: " + requiredNumber);
+      timeToComplete = requiredNumber * duration_music_time;
     }
     else {
-      timeToComplete = this.props.radioTracks[trackId].required;
+      let requiredNumber = parseFloat(this.props.radioTracks[trackId].required);
+      timeToComplete = requiredNumber;
     }
     if(listening_music_time > timeToComplete){
       this.props.dispatch(trackCompleted(trackId));
@@ -386,26 +389,31 @@ export class App extends React.Component {
 
 
 
-  checkCassetteTrackCompleted(listeningTime, duration, idCassette, trackNumber){
+  checkCassetteTrackCompleted(listeningTime, duration, id, trackNumber){
     let deltaError = 0.5;
     let timeToListen;
-    if(this.props.cassetteTracks[idCassette - 1].tracks[trackNumber].required <= 1){
-      timeToListen = duration * this.props.cassetteTracks[idCassette - 1].tracks[trackNumber].required;
+    let idCassette = id-1;
+    console.log("ID cassette: " + idCassette);
+    console.log("Track number: " + trackNumber);
+    if(this.props.cassetteTracks[idCassette].tracks[trackNumber].required.toString().includes("%")){
+      let requiredString = this.props.cassetteTracks[idCassette].tracks[trackNumber].required.toString();
+      let requiredStringShort = requiredString.slice(0,-1);
+      let requiredNumber = parseFloat(requiredStringShort)/100;
+     
     }
     else {
-      timeToListen = this.props.cassetteTracks[idCassette - 1].tracks[trackNumber].required;
+      let requiredNumber = parseFloat(this.props.cassetteTracks[idCassette].tracks[trackNumber].required);
+      timeToListen = requiredNumber;
     }
 
     if(listeningTime > (timeToListen - deltaError)){
-      console.log("Track escuchado: id ->" + (idCassette -1).toString() + "   trackNumber->" + trackNumber);
 
-      this.props.dispatch(cassetteTrackCompleted(idCassette, trackNumber));
-      this.props.dispatch(objectiveAccomplished("Cassette" + (idCassette-1).toString() + trackNumber.toString(), 1));
-      escapp.submitPuzzle(GLOBAL_CONFIG.cassettes[idCassette-1].tracks[trackNumber].puzzleId, 0, {}, function(success, res){
+      this.props.dispatch(cassetteTrackCompleted(idCassette +1, trackNumber));
+      this.props.dispatch(objectiveAccomplished("Cassette" + (idCassette).toString() + trackNumber.toString(), 1));
+      escapp.submitPuzzle(GLOBAL_CONFIG.cassettes[idCassette].tracks[trackNumber].puzzleId, 0, {}, function(success, res){
       }.bind(this));
 
       localStorage.setItem('cassetteTracks', JSON.stringify(this.props.cassetteTracks));
-      this.checkAllCassetteTracksCompleted();
 
 
     }

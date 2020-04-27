@@ -31,7 +31,6 @@ export default class Cassette extends React.Component {
           playingMusic = {this.props.playingCassette}
           muted = {this.props.muted}
           checkCassetteTrackCompleted = {this.props.checkCassetteTrackCompleted}
-          checkAllCassetteTracksCompleted = {this.props.checkAllCassetteTracksCompleted}
           onEnded = {()=>{this.props.onEnded();}}
         />
         // <ReactPlayer

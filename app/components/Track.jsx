@@ -41,7 +41,6 @@ export default class Track extends React.Component {
         let new_time = time + 1;
         this.setState({listening_music_time:new_time});
         this.props.checkCassetteTrackCompleted(this.state.listening_music_time, this.state.duration_music_time, this.props.idCassette + 1, this.props.trackNumber);
-        this.props.checkAllCassetteTracksCompleted();
       }
     }
 
