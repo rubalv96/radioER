@@ -8,29 +8,24 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
 
   // Tracks
   radio_tracks:[
+
     {
       type:"radio_track",
-      path:"./assets/sounds/prueba1.mp3",
-      frequency:91.0,
-      required:"50%",
-    },
-    {
-      type:"radio_track",
-      path:"./assets/sounds/prueba2.mp3",
+      path:"./assets/sounds/track1.mp3",
       frequency:90.0,
       required:0.5,
       puzzleId: 1,
     },
     {
       type:"radio_track",
-      path:"./assets/sounds/prueba2.mp3",
+      path:"./assets/sounds/track2.mp3",
       frequency:94.0,
       required:0.5,
       puzzleId: 2,
     },
     {
       type:"morse_plain_text",
-      text:"SOS",
+      text:"Guitar",
       frequency:92,
       required:0,
     },
@@ -48,17 +43,16 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
   cassettes:[
     {
       title:"Abbey Road",
-      artist:"The Beatles",
       tracks:[
         {
           title:"Come together",
-          path:"./assets/sounds/prueba1.mp3",
+          path:"./assets/sounds/track1.mp3",
           required:"50%",
           puzzleId: 4,
         },
         {
           title:"Something",
-          path:"./assets/sounds/prueba2.mp3",
+          path:"./assets/sounds/track5.mp3",
           required:"25%",
           puzzleId: 5,
 
@@ -69,24 +63,23 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
     },
     {
       title:"The Rolling Stones",
-      artist:"The Rolling Stones",
       tracks:[
         {
           title:"Route 66",
-          path:"./assets/sounds/prueba2.mp3",
+          path:"./assets/sounds/track2.mp3",
           required:0,
 
         },
         {
           title:"I Just Want to Make Love to You",
-          path:"./assets/sounds/prueba1.mp3",
+          path:"./assets/sounds/track3.mp3",
           required:0.5,
           puzzleId: 6,
 
         },
         {
           title:"Honest I do",
-          path:"./assets/sounds/prueba1.mp3",
+          path:"./assets/sounds/track4.mp3",
           required:0.2,
           puzzleId: 7,
 
@@ -94,31 +87,7 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
 
       ],
     },
-    {
-      title:"A night at the Opera",
-      artist:"Queen",
-      tracks:[
-        {
-          title:"Death on Two Legs",
-          path:"./assets/sounds/prueba1.mp3",
-          required:0,
 
-        },
-        {
-          title:"Lazing on a Sunday Afternoon",
-          path:"./assets/sounds/prueba2.mp3",
-          required:0,
-
-        },
-        {
-          title:"I'm in Love with My Car",
-          path:"./assets/sounds/prueba2.mp3",
-          required:0,
-
-        },
-
-      ],
-    },
 
   ],
 
