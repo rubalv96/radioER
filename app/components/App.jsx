@@ -399,7 +399,7 @@ export class App extends React.Component {
       let requiredString = this.props.cassetteTracks[idCassette].tracks[trackNumber].required.toString();
       let requiredStringShort = requiredString.slice(0,-1);
       let requiredNumber = parseFloat(requiredStringShort)/100;
-     
+
     }
     else {
       let requiredNumber = parseFloat(this.props.cassetteTracks[idCassette].tracks[trackNumber].required);

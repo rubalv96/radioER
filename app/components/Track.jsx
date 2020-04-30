@@ -60,7 +60,7 @@ export default class Track extends React.Component {
         track = (
           <ReactPlayer
             style={{display:"none"}}
-            url={"../assets/sounds/whiteNoise.mp3"}
+            url={"./assets/sounds/whiteNoise.mp3"}
             volume = {this.props.globalVolume}
             playing = {this.props.playingMusic}
             loop

@@ -39,7 +39,7 @@ export default class Radio extends React.Component {
       <>
         <div>
           <BackgroundImage
-            imagePath="../assets/images/background.jpg"
+            imagePath="./assets/images/background.jpg"
           />
           <RadioImage
             playingMusicFunction = {this.set_playing_music}

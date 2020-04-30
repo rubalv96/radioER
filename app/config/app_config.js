@@ -12,27 +12,27 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
     {
       type:"radio_track",
       path:"./assets/sounds/track1.mp3",
-      frequency:90.0,
+      frequency:106.5,
       required:0.5,
       puzzleId: 1,
     },
     {
       type:"radio_track",
       path:"./assets/sounds/track2.mp3",
-      frequency:94.0,
+      frequency:93.0,
       required:0.5,
       puzzleId: 2,
     },
     {
       type:"morse_plain_text",
       text:"Guitar",
-      frequency:92,
+      frequency:98.5,
       required:0,
     },
     {
       type:"morse_coded_text",
       code:"... --- ...",
-      frequency:98.0,
+      frequency:103.5,
       required:8,
       puzzleId: 3,
     },
@@ -107,14 +107,14 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
   escapp:{
     endpoint:"https://escapp.dit.upm.es/api/escapeRooms/10",
     localStorageKey:"ESCAPP_Radio",
-    imagesPath:"assets/images/",
+    imagesPath:"./assets/images/",
     I18n:{
       availableLocales:["es", "en"],
       locale:"es",
       defaultLocale:"es",
     },
     appPuzzleIds:[1],
-    forceValidation:true,
+    forceValidation:false,
   },
 };
 

@@ -32,7 +32,7 @@ export default class Instructions extends React.Component {
     this.state.show_instructions ? instructions = (
       <>
         <img id={"instructionsImageBackground"}
-          src="../assets/images/instructions_old.png"
+          src="./assets/images/instructions_old.png"
           onClick={()=>{this.setState({show_instructions:false});}}
 
         />
@@ -72,7 +72,7 @@ export default class Instructions extends React.Component {
         <div >
           {instructionsTitle}
           <img id={id_animated === true ? "paperInstructionsAnimated" : "paperInstructions"}
-            src="../assets/images/instructions.png"
+            src="./assets/images/instructions.png"
             onClick={this.handleClick}/>
           {instructions}
         </div>
