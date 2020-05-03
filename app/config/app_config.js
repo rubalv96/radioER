@@ -11,30 +11,37 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
 
     {
       type:"radio_track",
-      path:"./assets/sounds/track1.mp3",
+      path:"./assets/sounds/quimica_1.mp3",
       frequency:106.5,
-      required:0.5,
+      required:"50%",
       puzzleId: 1,
     },
     {
       type:"radio_track",
-      path:"./assets/sounds/track2.mp3",
+      path:"./assets/sounds/quimica_2.mp3",
       frequency:93.0,
-      required:0.5,
+      required:"50%",
       puzzleId: 2,
     },
     {
-      type:"morse_plain_text",
-      text:"Guitar",
-      frequency:98.5,
+      type:"radio_track",
+      path:"./assets/sounds/quimica_3.mp3",
+      frequency:95.3,
       required:0,
+      puzzleId: 3,
+    },
+    {
+      type:"morse_plain_text",
+      text:"Carbono",
+      frequency:98.5,
+      required:"100%",
+      puzzleId: 4,
     },
     {
       type:"morse_coded_text",
       code:"... --- ...",
       frequency:103.5,
-      required:8,
-      puzzleId: 3,
+      required:0,
     },
   ],
 
@@ -42,19 +49,24 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
 
   cassettes:[
     {
-      title:"Abbey Road",
+      title:"Química Orgánica",
       tracks:[
         {
-          title:"Come together",
-          path:"./assets/sounds/track1.mp3",
+          title:"Oxidación",
+          path:"./assets/sounds/quimica_4.mp3",
           required:"50%",
-          puzzleId: 4,
+          puzzleId: 5,
         },
         {
-          title:"Something",
-          path:"./assets/sounds/track5.mp3",
+          title:"Radio atómico",
+          path:"./assets/sounds/track3.mp3",
+          required:0,
+        },
+        {
+          title:"Espectro químico",
+          path:"./assets/sounds/quimica_5.mp3",
           required:"25%",
-          puzzleId: 5,
+          puzzleId: 6,
 
 
         },
@@ -62,26 +74,25 @@ let GLOBAL_CONFIG_DEVELOPMENT = {
       ],
     },
     {
-      title:"The Rolling Stones",
+      title:"Química inorgánica",
       tracks:[
         {
-          title:"Route 66",
-          path:"./assets/sounds/track2.mp3",
+          title:"Átomos",
+          path:"./assets/sounds/track1.mp3",
           required:0,
 
         },
         {
-          title:"I Just Want to Make Love to You",
-          path:"./assets/sounds/track3.mp3",
-          required:0.5,
-          puzzleId: 6,
+          title:"Moléculas",
+          path:"./assets/sounds/quimica_6.mp3",
+          required:"50%",
+          puzzleId: 7,
 
         },
         {
-          title:"Honest I do",
+          title:"Reacciones Químicas",
           path:"./assets/sounds/track4.mp3",
-          required:0.2,
-          puzzleId: 7,
+          required:0,
 
         },
 
