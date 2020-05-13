@@ -90,6 +90,7 @@ export default class Track extends React.Component {
         playing = {this.props.playingMusic}
         onDuration={(duration)=>{this.setState({duration_music_time:duration});}}
         onEnded = {this.props.onEnded}
+        muted = {this.props.muted}
 
       />;
     }
