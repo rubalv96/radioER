@@ -19,7 +19,7 @@ In order to build the resources you need to have:
  - Clone the GitHub project and go to the radioER folder:
 ```shell
 $ git clone https://github.com/rubalv96/radioER
-$ cd puzzleER
+$ cd radioER
 ```
 
  - Execute the following command to install all the project dependencies in the 'node_modules' folder:
