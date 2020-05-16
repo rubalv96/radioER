@@ -17,17 +17,20 @@ In order to build the resources you need to have:
 
  - Open a new terminal and go to your working directory.
  - Clone the GitHub project and go to the radioER folder:
-sh
+```shell
 $ git clone https://github.com/rubalv96/radioER
 $ cd puzzleER
- - Execute the following command to install all the project dependencies in the 'node_modules' folder:
-sh
-$ npm install
- - Execute the following command to transform audios into Morse format and to start the development server:
-sh
-$ node tasks/morsify.js
-$ npm run start
+```
 
+ - Execute the following command to install all the project dependencies in the 'node_modules' folder:
+```shell
+$ npm install
+```
+ - Execute the following command to transform audios into Morse format and to start the development server:
+```shell
+$ node tasks/morsify.js 
+$ npm run start
+```
      - The app will be available at the following URL
           http://localhost:8080.
      - SCORM 1.2 environment will be available at http://localhost:8080/scorm12.html.
